@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" name="description" content="gamesHub | the place to check out video games">
+
+	<title>gamesHub  |  the place to check out video games, gameplay, walkthroughs, and more!</title>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="css/grid.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="page_title">
+		<h1>gamesHub</h1>
+	</div>
+	<!--heading gamesHub is static.  fading text cycles through 5 phrases-->
+	<div class="fading_text">
+		
+	</div>
+	<!--search fields provide options for search IGDB by title, genre, platform-->
+	<div class="search_fields">
+
+		<form id="search_game">
+			<label for="game_title_input"></label>
+			<input type="text" name="game_title_input" id="game_title_input" placeholder="game title: Guild Wars 2">
+			<button type="submit" name="game_title_submit">search</button>
+		</form>
+
+		<form id="search_genre">
+			<label for="genre_input"></label>
+			<input type="text" name="genre_input" id="genre_input" placeholder="genre: rpg, mmo, fps, etc">
+			<button type="submit" name="genre_submit">search</button>
+		</form>
+
+		<form id="search_platform">
+			<label for="platform_input"></label>
+			<input type="text" name="platform_input" id="platform_input" placeholder="platform: pc, ps4, xbox, etc">
+			<button type="submit" name="platform_submit">search</button>
+		</form>
+
+		<form id="reset_search_fields">
+			<button class="reset_search" name="reset_search_button" id="reset_search_button">reset search</button>
+		</form>
+
+	</div>
+
+<!--results section should display after the search has been completed and show intial 3 search results-->
+	<div class="results_section">
+		
+	</div>
+<!--pop out div is for additional window that appears with mouse over-->
+	<div class="pop_out_description">
+		
+	</div>
+<!--video results is separate section divided in two: youtube/Twitch.  -->
+	<div class="video_results">
+
+		<div class="youtube_results">
+			<div class="youtube_gameplay"></div>
+			<div class="youtube_walkthroughs"></div>
+			<div class="youtube_commentary"></div>
+		</div>
+<!--navigations buttons should appear in the Twitch window for styling but not be controlled by results coding-->
+		<div class="twitch_results">
+			<div class="twitch_livestream"></div>
+			<div class="twitch_channels"></div>
+			<div class="navigation_buttons">
+				<button class="return_to_results">return to search results</button>
+				<button class="return_to_search">search for a new game</button>
+			</div>
+		</div>
+
+	</div>
+
+	<!--share buttons?-->
+	<footer>
+		<p>gamesHub developed by KMiller</p>
+		<a href="mailto:k.macleod21@gmail.com">Email Me!</a>
+	</footer>
+</body>
+</html>
