@@ -1,3 +1,8 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Orbitron', sans-serif;
+}
+
 #share-buttons img {
 	width: 35px;
 	padding: 5px;
