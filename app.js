@@ -1,5 +1,3 @@
-"use strict";
-
 var igdb_base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com"
 var youtube_base_url = "https://www.googleapis.com/youtube/v3/search"
 var twitch_base_url = "https://api.twitch.tv/kraken."
@@ -62,14 +60,14 @@ else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
 	console.log();
 }
-$(".youtube_results").html(resultElement);
+$(".js_youtube_results").html(resultElement);
 }
 
 //button handler for search button
 function submitHandler() {
-	$(".search_submit").submit(function(event) {
+	$(".js_search_game").submit(function(event) {
 		event.preventDefault();
-		var query = $(this).find("#search_input").val();
+		var query = $(this).find(".js_search_input").val();
 		console.log(query);
 		makeRequestYOUTUBE(query, displaySearchResultsYOUTUBE);
 	});

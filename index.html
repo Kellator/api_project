@@ -3,6 +3,9 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8" name="description" content="gamesHub | videogame search">
+	<script src="https://apis.google.com/js/api.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="app.js"></script>
 
 	<title>gamesHub|video game search</title>
 
@@ -23,10 +26,10 @@
 	<!--search fields provide options for search IGDB by title, genre, platform-->
 	<div class="search_fields">
 
-		<form id="search_game">
-			<label for="search_input"></label>
-			<input type="text" name="search_input" id="search_input" placeholder="search by game title, genre, platform, etc">
-			<button type="submit" name="search_submit" class="search_submit">search</button>
+		<form class="search_game js_search_game">
+		<label for="search_input"></label>
+			<input class="js_search_input" type="text" name="search_input" placeholder="search by game title, genre, platform, etc">
+			<button class="search_submit" id= "js_search_submit" type="submit" name="search_submit">search</button>
 		</form>
 <!-- 
 		<form id="search_genre">
@@ -58,8 +61,9 @@
 <!--video results is separate section divided in two: youtube/Twitch.  -->
 	<div class="video_results" >
 
-		<div class="youtube_results">
+		<div class="youtube_results js_youtube_results">
 			<p>I am default text</p>
+			<div class="youtube_trailers"></div>
 			<div class="youtube_gameplay"></div>
 			<div class="youtube_walkthroughs"></div>
 			<div class="youtube_commentary"></div>
@@ -93,7 +97,6 @@
 		</div>
 	</footer>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="app.js"></script>
+
 </body>
 </html>
