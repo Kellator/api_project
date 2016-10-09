@@ -13,7 +13,6 @@
 .hidden {
 	display: none;
 }
-.youtube_results {
-	display: block;
-	background-color: gainsboro;
+.result1, .result2, .result3, .result4 {
+	display: inline-block;
 }

@@ -26,99 +26,103 @@ var twitch_search_games = "/search/games?"
 
 var cloudinary_url = "https://res.cloudinary.com/igdb/image/upload/"
 
-
+//function makeRequestYOUTUBE() {
 //makes request to youtube for trailer search results
-function makeRequestYOUTUBEtrailer(searchTerm, callback) {
-	var settings = {
-		url: youtube_base_url,
-		
-		data: {
-			key: youtube_key,
-			q: searchTerm + "trailer",
-			r:"json",
-			part: "snippet",
-			type: "video",
-			relevanceLanguage: "en",
-			nextPageToken: "",
-			prevPageToken: "",
-		},
-		dataType: 'json',
-		success: callback
-	};
-$.ajax(settings);
-console.log();
-}
+	function makeRequestYOUTUBEtrailer(searchTerm, callback) {
+		var settings = {
+			url: youtube_base_url,
+			
+			data: {
+				key: youtube_key,
+				q: searchTerm + "trailer",
+				r:"json",
+				part: "snippet",
+				type: "video",
+				maxResults: 3,
+				relevanceLanguage: "en",
+				nextPageToken: "",
+				prevPageToken: "",
+			},
+			dataType: 'json',
+			success: callback
+		};
+	$.ajax(settings);
+	console.log();
+	}
 
-//makes request to youtube for gameplay search results
-function makeRequestYOUTUBEgameplay(searchTerm, callback) {
-	var settings = {
-		url: youtube_base_url,
-		
-		data: {
-			key: youtube_key,
-			q: searchTerm + "gameplay",
-			r:"json",
-			part: "snippet",
-			type: "video",
-			relevanceLanguage: "en",
-			nextPageToken: "",
-			prevPageToken: "",
-		},
-		dataType: 'json',
-		success: callback
-	};
-$.ajax(settings);
-console.log();
-}
+	//makes request to youtube for gameplay search results
+	function makeRequestYOUTUBEgameplay(searchTerm, callback) {
+		var settings = {
+			url: youtube_base_url,
+			
+			data: {
+				key: youtube_key,
+				q: searchTerm + "gameplay",
+				r:"json",
+				part: "snippet",
+				type: "video",
+				maxResults: 3,
+				relevanceLanguage: "en",
+				nextPageToken: "",
+				prevPageToken: "",
+			},
+			dataType: 'json',
+			success: callback
+		};
+	$.ajax(settings);
+	console.log();
+	}
 
-//makes request to youtube for walkthroughs search results
-function makeRequestYOUTUBEwalkthrough(searchTerm, callback) {
-	var settings = {
-		url: youtube_base_url,
-		
-		data: {
-			key: youtube_key,
-			q: searchTerm + "walkthrough",
-			r:"json",
-			part: "snippet",
-			type: "video",
-			relevanceLanguage: "en",
-			nextPageToken: "",
-			prevPageToken: "",
-		},
-		dataType: 'json',
-		success: callback
-	};
-$.ajax(settings);
-console.log();
-}
+	//makes request to youtube for walkthroughs search results
+	function makeRequestYOUTUBEwalkthrough(searchTerm, callback) {
+		var settings = {
+			url: youtube_base_url,
+			
+			data: {
+				key: youtube_key,
+				q: searchTerm + "walkthrough",
+				r:"json",
+				part: "snippet",
+				type: "video",
+				maxResults: 3,
+				relevanceLanguage: "en",
+				nextPageToken: "",
+				prevPageToken: "",
+			},
+			dataType: 'json',
+			success: callback
+		};
+	$.ajax(settings);
+	console.log();
+	}
 
-//makes request to youtube for commentary search results
-function makeRequestYOUTUBEcommentary(searchTerm, callback) {
-	var settings = {
-		url: youtube_base_url,
-		
-		data: {
-			key: youtube_key,
-			q: searchTerm + "commentary",
-			r:"json",
-			part: "snippet",
-			type: "video",
-			relevanceLanguage: "en",
-			nextPageToken: "",
-			prevPageToken: "",
-		},
-		dataType: 'json',
-		success: callback
+	//makes request to youtube for commentary search results
+	function makeRequestYOUTUBEcommentary(searchTerm, callback) {
+		var settings = {
+			url: youtube_base_url,
+			
+			data: {
+				key: youtube_key,
+				q: searchTerm + "commentary",
+				r:"json",
+				part: "snippet",
+				type: "video",
+				maxResults: 3,
+				relevanceLanguage: "en",
+				nextPageToken: "",
+				prevPageToken: "",
+			},
+			dataType: 'json',
+			success: callback
+		};
+	$.ajax(settings);
+	console.log();
 	};
-$.ajax(settings);
-console.log();
-}
-
+//}
 
 
 //renders trailer Youtube results
-function displaySearchResultsYOUTUBEgameplay(data) {
+function displaySearchResultsYOUTUBEtrailer(data) {
 	console.log(data);
 	var resultElement = "";
 	var additionalResults = "<form class='additional_trailers js_additional_trailers '>" +  
@@ -202,7 +206,8 @@ function submitHandler() {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
 		console.log(query);
-		makeRequestYOUTUBE(query, displaySearchResultsYOUTUBE);
+		//makeRequestYOUTUBE(query, displaySearchResultsYOUTUBEtrailer, displaySearchResultsYOUTUBEgameplay, displaySearchResultsYOUTUBEwalkthrough, displaySearchResultsYOUTUBEcommentary);
+		makeRequestYOUTUBEwalkthrough(query, displaySearchResultsYOUTUBEwalkthrough);
 	});
 }
 console.log();
