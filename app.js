@@ -1,3 +1,5 @@
+"use strict";
+
 var igdb_base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com"
 var youtube_base_url = "https://www.googleapis.com/youtube/v3/search"
 var twitch_base_url = "https://api.twitch.tv/kraken."
@@ -6,9 +8,11 @@ var igdb_key = "65vlqIW8HRmshKsG0KIY236EqOB4p1OPDiYjsnO1DuCj7LGeYt"
 var youtube_key = "AIzaSyC8vg9sZggTKGAiYvX4wGs9H46pR2_spPM"
 var twitch_key = "ezq2fmpfkjk3zzl17nmo2j8i5ehcdz6"
 
-var igdb_search_titles = "/games/"
-var igdb_search_genres = "/genres/"
-var igdb_search_platforms = "/platforms/"
+var igdbWebAddress = "www.igdb.com"
+
+var igdb_titles_endpoint = "/games/"
+var igdb_genres_endpoint = "/genres/"
+var igdb_platforms_endpoint = "/platforms/"
 
 
 var youtube_search_gameplay
@@ -22,23 +26,6 @@ var twitch_search_streams = "/search/streams?"
 var twitch_search_games = "/search/games?"
 
 var cloudinary_url = "https://res.cloudinary.com/igdb/image/upload/"
-
-//makes request to IGDB api for search results
-// function makeRequestIGDB(searchTerm, callback) {
-// 	var settings = {
-// 		url: igdb_base_url,
-// 		data: {
-// 			key: igdb_key,
-// 			fields: "*",
-// 			search: searchTerm,
-// 			order: "rating:desc"
-// 		}
-// 		dataType: 'json',
-// 		success: callback
-// 	};
-// $.ajax(settings);
-// console.log();
-// }
 
 
 //makes request to youtube for search results
@@ -60,23 +47,6 @@ $.ajax(settings);
 console.log();
 }
 
-//makes request to twitch for search results
-// function makeRequestTWITCH(searchTerm, callback) {
-// 	var settings = {
-// 		url: twitch_base_url,
-// 		data: {
-// 			key: twitch_key,
-// 			q: searchTerm,
-
-// 		}
-// 		dataType: 'json',
-// 		success: callback
-// 	};
-// }
-
-//renders IGDB results
-function displaySearchResultsIGDB(data) {}
-
 //renders Youtube results
 function displaySearchResultsYOUTUBE(data) {
 	console.log(data);
@@ -92,17 +62,19 @@ else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
 	console.log();
 }
-$(".video_results").html(resultElement);
+$(".youtube_results").html(resultElement);
 }
 
 //button handler for search button
 function submitHandler() {
 	$(".search_submit").submit(function(event) {
 		event.preventDefault();
-		var query = $(this).find(".search_input").val();
+		var query = $(this).find("#search_input").val();
 		console.log(query);
-		makeRequest(query, displaySearchResultsYOUTUBE);
+		makeRequestYOUTUBE(query, displaySearchResultsYOUTUBE);
 	});
 }
 console.log();
 $(function(){submitHandler();});
+
+
