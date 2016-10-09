@@ -44,7 +44,7 @@
 			<button type="submit" name="platform_submit">search</button>
 		</form> -->
 
-		<form id="reset_search_fields">
+		<form class="reset_search_fields">
 			<button class="reset_search" name="reset_search_button" id="reset_search_button">reset search</button>
 		</form>
 
@@ -52,10 +52,14 @@
 
 <!--results section should display after the search has been completed and show intial 3 search results-->
 	<div class="results_section">
+
 		
 	</div>
 <!--pop out div is for additional window that appears with mouse over-->
-	<div class="pop_out_description">
+	<div class="pop_out_description js_pop_out_description">
+		<form class= "display_vid_results js_display_vid_results">
+			<button class= "js_vid_results" name= "vid_results_button" id="vid_results_button">Show Video Results</button>
+		</form>
 		
 	</div>
 <!--video results is separate section divided in two: youtube/Twitch.  -->

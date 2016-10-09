@@ -13,9 +13,10 @@ var igdb_genres_endpoint = "/genres/"
 var igdb_platforms_endpoint = "/platforms/"
 
 
-var youtube_search_gameplay
-var youtube_search_walkthrough
-var youtube_search_commentary
+var youtube_filter_gameplay = "gameplay"
+var youtube_filter_walkthrough = "walkthrough"
+var youtube_filter_commentary = "commentary"
+var youtube_filter_trailer = "trailer"
 var youtube_channel = "/channel/"
 var youtube_video = "/watch?"
 
@@ -26,10 +27,11 @@ var twitch_search_games = "/search/games?"
 var cloudinary_url = "https://res.cloudinary.com/igdb/image/upload/"
 
 
-//makes request to youtube for search results
+//makes request to youtube for basic search results
 function makeRequestYOUTUBE(searchTerm, callback) {
 	var settings = {
 		url: youtube_base_url,
+		
 		data: {
 			key: youtube_key,
 			q: searchTerm,
@@ -37,6 +39,8 @@ function makeRequestYOUTUBE(searchTerm, callback) {
 			part: "snippet",
 			type: "video",
 			relevanceLanguage: "en",
+			nextPageToken: "",
+			prevPageToken: "",
 		},
 		dataType: 'json',
 		success: callback
@@ -45,7 +49,7 @@ $.ajax(settings);
 console.log();
 }
 
-//renders Youtube results
+//renders basic Youtube results
 function displaySearchResultsYOUTUBE(data) {
 	console.log(data);
 	var resultElement = "";
@@ -76,3 +80,13 @@ console.log();
 $(function(){submitHandler();});
 
 
+//code to handle vid button in pop out results window
+// function submitVidButtonHandler() {
+// 	$(".js_display_vid_results").submit(function(event) {
+// 		event.preventDefault();
+// 		var query = $(this).find(IGDB SEARCH LINK RESULT).val();
+// 		console.log(query);
+// 		makeRequestYOUTUBE(query, displaySearchResultsYOUTUBE);
+// 	});
+// }
+// $(function(){submitVidButtonHandler();)}
