@@ -130,7 +130,7 @@ function displaySearchResultsYOUTUBEtrailer(data) {
 	if (data.items) {
 		data.items.forEach(function(item) {
 		resultElement += "<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_6' src='" + item.snippet.thumbnails.high.url + "'/></a>";		
+		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='' src='" + item.snippet.thumbnails.high.url + "'/></a>";		
 	});
 }
 else {
@@ -149,8 +149,8 @@ function displaySearchResultsYOUTUBEgameplay(data) {
 	"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>";
 	if (data.items) {
 		data.items.forEach(function(item) {
-		resultElement += "<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_6' src='" + item.snippet.thumbnails.high.url + "'/></a>";
+		resultElement += "<div class 'result_container'" + "<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
+		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='' src='" + item.snippet.thumbnails.high.url + "'/></a></div>";
 	});
 }
 else {
@@ -168,8 +168,8 @@ function displaySearchResultsYOUTUBEwalkthrough(data) {
 	"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>";
 	if (data.items) {
 		data.items.forEach(function(item) {
-		resultElement += "<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_6' src='" + item.snippet.thumbnails.high.url + "'/></a>";
+		resultElement += "<div class 'result_container'" +"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
+		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='' src='" + item.snippet.thumbnails.high.url + "'/></a></div>";
 	});
 }
 else {
@@ -189,7 +189,7 @@ function displaySearchResultsYOUTUBEcommentary(data) {
 	if (data.items) {
 		data.items.forEach(function(item) {
 		resultElement += "<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_6' src='" + item.snippet.thumbnails.high.url + "'/></a>";
+		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='' src='" + item.snippet.thumbnails.high.url + "'/></a>";
 	});
 }
 else {
