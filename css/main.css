@@ -1,8 +1,30 @@
 * {
 	box-sizing: border-box;
 	font-family: 'Orbitron', sans-serif;
+	color: #e6e6ff;
+}
+body {
+	background-image: url("../images/cubes.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #00001a;
 }
 
+h1 {
+	font-size: 140px;
+	margin-left: 40px;
+	margin-bottom: 5px;
+}
+h3 {
+	font-size: 50px;
+	margin: 20px 0 60px 40px;
+}
+
+.search_input, button {
+	color: #00001a;
+	margin-left: 40px;
+	margin-bottom: 4px;
+}
 #share-buttons img {
 	width: 35px;
 	padding: 5px;
@@ -15,4 +37,10 @@
 }
 .result1, .result2, .result3, .result4 {
 	display: inline-block;
+}
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	margin: 5px;
 }
