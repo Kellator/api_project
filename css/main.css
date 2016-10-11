@@ -20,7 +20,16 @@ h3 {
 	font-size: 50px;
 	margin: 20px 0 60px 40px;
 }
+footer {
+	bottom: 0;
+	left: 0;
+	margin: 5px;
+	margin-left: 40px;
+}
+a:visited {
+	color: #008000;
 
+}
 .search_input, button {
 	color: #00001a;
 	margin-left: 40px;
@@ -40,13 +49,9 @@ h3 {
 .result_container {
 	background-image: none;
 	background-color: #1a1a1a;
-	float: left;
-}
-footer {
-	bottom: 0;
-	left: 0;
-	margin: 5px;
-	margin-left: 40px;
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .igdb_result_return {
@@ -65,6 +70,10 @@ footer {
 	padding: 0 20px 20px 20px;
 	vertical-align: top;
 }
-.youtube_results {
+.youtube_gameplay_list {
 	display: inline-block;
+}
+.bold_text {
+	font-weight: bold;
+	font-stretch: extra-expanded;
 }

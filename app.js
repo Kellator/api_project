@@ -34,7 +34,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			fields: "*",
 			limit: 5,
 			offset: 0,
-			order: "release_dates.date:desc",
+			//order: "release_dates.date:desc",
 			search: searchTerm
 		},
 		headers: {
@@ -60,7 +60,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 				r:"json",
 				part: "snippet",
 				type: "video",
-				maxResults: 3,
+				maxResults: 2,
 				relevanceLanguage: "en",
 				nextPageToken: "",
 				prevPageToken: "",
@@ -79,10 +79,10 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	if (data) {
 		data.forEach(function(item) {
-			resultElement += "<div class= 'igdb_result_return  col_12'>" +
-			"<h2>" +  item.name  + "</h2>" + //"<a href= '" + item.url + "'>" +
+			resultElement += "<div class= 'igdb_result_return  col_12'>" + "<a href= '" + item.url + "'>" +
+			"<h2>" +  item.name + "</h2>" + //"<a href= '" + item.url + "'>" +
 			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
-			"<p class= 'igdb_storyline col_8'>" + item.summary + "</p>" +
+			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + item.summary + "</p>" +
 			
 			// "<div class='youtube_results js_youtube_results'>" +
 			// 	"<div class='youtube_trailers js_youtube_trailers result1'>" +
@@ -90,11 +90,11 @@ function displaySearchResultsIGDB(data, type) {
 			// 		"<form class='additional_trailers js_additional_trailers '>" +
 			// 		"<button class='more_trailers js_more_trailers' name='more_trailers_button' id='more_trailers_button'>For More Trailers</button></form>" +
 			// 	"</div>" +
-			// 	"<div class='youtube_gameplay js_youtube_gameplay result2' >" +
-			// 		"<div class= 'youtube_gameplay_list'></div>" +
-			// 		"<form class='additional_gameplay js_additional_gameplay '>" +
-			// 		"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
-			// 	"</div>" +
+				"<div class='youtube_gameplay js_youtube_gameplay result2' >" +
+					"<div class= 'youtube_gameplay_list col_8'></div>" +
+					"<form class='additional_gameplay js_additional_gameplay '>" +
+					"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
+				"</div>" +
 			// 	"<div class='youtube_walkthroughs js_youtube_walkthroughs'>" +
 			// 		"<div class= 'youtube_walkthrough_list'></div>" +
 			// 		"<form class='additional_walkthrough js_additional_walkthrough '>" +
@@ -108,7 +108,7 @@ function displaySearchResultsIGDB(data, type) {
 			// "</div>" +
 			"</div>"; 
 		// makeRequestYOUTUBE(item.name, "trailer", displaySearchResultsYOUTUBE);
- 	// 	makeRequestYOUTUBE(item.name, "gameplay", displaySearchResultsYOUTUBE);
+ 			 makeRequestYOUTUBE(item.name, "gameplay", displaySearchResultsYOUTUBE);
  	// 	makeRequestYOUTUBE(item.name, "walkthrough", displaySearchResultsYOUTUBE);
  	// 	makeRequestYOUTUBE(item.name, "commentary", displaySearchResultsYOUTUBE);
 			// +"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" + "</div>";
@@ -128,8 +128,9 @@ function displaySearchResultsYOUTUBE(data, type) {
 	var resultElement = "";
 	if (data.items) {
 		data.items.forEach(function(item) {
-		resultElement += "<div class ='result_container col_8'" +"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_8' src='" + item.snippet.thumbnails.high.url + "'/></a></div>";
+		resultElement += "<div class ='result_container col_4'" + 
+		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
+		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
 	});
 }
 else {
@@ -153,16 +154,17 @@ console.log();
 $(function(){submitHandler();});
 // to get youtube vid results: 
 
-function submitYOUTUBEHandler() {
-	$(".vid_results_button").submit(function(event) {
-		event.preventDefault();
-		var query = $(this).find(".title_search").val();
-		console.log(query);
- 		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
-	});
-}
-console.log();
-$(function(){submitYOUTUBEHandler();});
+// function submitYOUTUBEHandler() {
+// 	$(".vid_results_button").submit(function(event) {
+// 		event.preventDefault();
+// 		var query = $(this).find(".title_search").val();
+// 		console.log(query);
+//  		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
+//  		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
+//  		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
+//  		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
+// 	});
+// }
+// console.log();
+// $(function(){submitYOUTUBEHandler();});
+
