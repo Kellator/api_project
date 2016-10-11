@@ -82,7 +82,13 @@ function displaySearchResultsIGDB(data, type) {
 			resultElement += "<div class= 'igdb_result_return  col_12'>" +
 			"<h2>" +  item.name  + "</h2>" + //"<a href= '" + item.url + "'>" +
 			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
-			"<p class= 'igdb_storyline col_8'>" + item.summary + "</p></div>"; 
+			"<p class= 'igdb_storyline col_8'>" + item.summary + "</p>" +
+			
+			"</div>"; 
+		makeRequestYOUTUBE(item.name, "trailer", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(item.name, "gameplay", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(item.name, "walkthrough", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(item.name, "commentary", displaySearchResultsYOUTUBE);
 			// +"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" + "</div>";
 		});
 		//how to remove undefined results? (if item returns undefined, return "")
