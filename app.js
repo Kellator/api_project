@@ -78,9 +78,13 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	if (data) {
 		data.forEach(function(item) {
-			resultElement += "<div class= 'igdb_result_return  col_6'><h2>" + item.name + "</h2>" +
-			"<img class ='side_image' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + "<p class= 'igdb_storyline'>" + item.summary + "</p></div>";
+			resultElement += "<div class= 'igdb_result_return  col_6'><h2 class='title_search'>" + item.name + "</h2>" +
+			"<img class ='side_image' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
+			"<p class= 'igdb_storyline '>" + item.summary + "</p>" + 
+			"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" +
+			"</div>";
 		});
+		//how to remove undefined results? (if item returns undefined, return "")
 	}
 	else {
 		resultElement += "<p>Sorry.  No results.  Try again. </p>"
@@ -114,12 +118,23 @@ function submitHandler() {
 		console.log(query);
 		//makeRequestYOUTUBE(query, displaySearchResultsYOUTUBEtrailer, displaySearchResultsYOUTUBEgameplay, displaySearchResultsYOUTUBEwalkthrough, displaySearchResultsYOUTUBEcommentary);
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
+
 	});
 }
 console.log();
 $(function(){submitHandler();});
 // to get youtube vid results: 
-// 		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
-// 		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
-// 		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
-// 		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
+
+function submitYOUTUBEHandler() {
+	$(".vid_results_button").submit(function(event) {
+		event.preventDefault();
+		var query = $(this).find(".title_search").val();
+		console.log(query);
+ 		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
+	});
+}
+console.log();
+$(function(){submitYOUTUBEHandler();});
