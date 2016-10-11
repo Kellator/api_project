@@ -8,6 +8,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-color: #00001a;
+	background-attachment: fixed;
 }
 
 h1 {
