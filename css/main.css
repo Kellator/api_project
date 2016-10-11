@@ -65,3 +65,9 @@ footer {
 	padding: 0 20px 20px 20px;
 	vertical-align: top;
 }
+.youtube_results {
+	display: inline-block;
+}
+.result_container {
+	display: inline-block;
+}
