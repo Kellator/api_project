@@ -34,6 +34,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			fields: "*",
 			limit: 5,
 			offset: 0,
+			order: "release_dates.date:desc",
 			search: searchTerm
 		},
 		headers: {
@@ -78,7 +79,8 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	if (data) {
 		data.forEach(function(item) {
-			resultElement += "<div class= 'igdb_result_return  col_6'><h2 class='title_search'>" + item.name + "</h2>" +
+			resultElement += "<div class= 'igdb_result_return  col_12'>" +
+			"<h2>" +  item.name  + "</h2>" + //"<a href= '" + item.url + "'>" +
 			"<img class ='side_image' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
 			"<p class= 'igdb_storyline '>" + item.summary + "</p>" + 
 			"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" +
@@ -126,7 +128,7 @@ $(function(){submitHandler();});
 // to get youtube vid results: 
 
 function submitYOUTUBEHandler() {
-	$(".vid_results_button").submit(function(event) {
+	$(".vid_results_button").click(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".title_search").val();
 		console.log(query);
