@@ -78,7 +78,8 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	if (data) {
 		data.forEach(function(item) {
-			resultElement += "<div><p>" + item.name + "<br>" + item.storyline + "</p></div>";
+			resultElement += "<div class= 'igdb_result_return  col_6'><h2>" + item.name + "</h2>" +
+			"<img class ='side_image' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + "<p class= 'igdb_storyline'>" + item.summary + "</p></div>";
 		});
 	}
 	else {
@@ -94,7 +95,7 @@ function displaySearchResultsYOUTUBE(data, type) {
 	var resultElement = "";
 	if (data.items) {
 		data.items.forEach(function(item) {
-		resultElement += "<div class 'result_container'" +"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
+		resultElement += "<div class ='result_container'" +"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + 
 		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='' src='" + item.snippet.thumbnails.high.url + "'/></a></div>";
 	});
 }

@@ -50,3 +50,16 @@ footer {
 .results_section {
 	margin-left: 40px;
 }
+
+.igdb_result_return {
+	background-color: #1a1a1a;
+	padding: 30px;
+	margin-bottom: 20px;
+}
+.igdb_games_results_list {
+	position: relative;
+}
+.side_image {
+	position: relative;
+
+}
