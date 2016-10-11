@@ -32,17 +32,16 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		url: igdb_base_url + "/" + type + "/",
 		data: {
 			fields: "*",
-			limit: 10,
+			limit: 5,
 			offset: 0,
-			order: "release_dates.date:desc",
 			search: searchTerm
 		},
 		headers: {
 			"X-Mashape-Key": igdb_key
 		},
-		dataType: "json",
+		dataType: 'json',
 		success: function(data) {
-			console.log(data);
+			callback(data,type);
 		}
 	};
 	$.ajax(settings);
@@ -77,10 +76,9 @@ function makeRequestIGDB(searchTerm, type, callback) {
 function displaySearchResultsIGDB(data, type) {
 	console.log(data);
 	var resultElement = "";
-	if (data.items) {
-		data.items.forEach(function(item) {
-			resultElement += "<div>" //enter types of returned data wanted+ ""
-			+ "<p> data here </p></div>";
+	if (data) {
+		data.forEach(function(item) {
+			resultElement += "<div><p>" + item.name + "<br>" + item.storyline + "</p></div>";
 		});
 	}
 	else {
@@ -88,6 +86,8 @@ function displaySearchResultsIGDB(data, type) {
 	}
 	$(".igdb_" + type + "_results_list").html(resultElement);
 }
+
+
 //renders Youtube results
 function displaySearchResultsYOUTUBE(data, type) {
 	console.log(data);
@@ -100,7 +100,6 @@ function displaySearchResultsYOUTUBE(data, type) {
 }
 else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
-	console.log();
 }
 $(".youtube_" + type + "_list").html(resultElement);
 }
