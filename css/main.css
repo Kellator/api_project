@@ -51,8 +51,8 @@ footer {
 
 .igdb_result_return {
 	background-color: #1a1a1a;
-	padding: 30px;
-	margin-bottom: 20px;
+	margin: 20px;
+	padding: 20px;
 }
 .igdb_games_results_list {
 	position: relative;
@@ -60,6 +60,8 @@ footer {
 .side_image {
 	display: inline-block;
 }
-p {
+.igdb_result_return p {
 	display: inline-block;
+	padding: 0 20px 20px 20px;
+	vertical-align: top;
 }
