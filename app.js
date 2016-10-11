@@ -81,10 +81,9 @@ function displaySearchResultsIGDB(data, type) {
 		data.forEach(function(item) {
 			resultElement += "<div class= 'igdb_result_return  col_12'>" +
 			"<h2>" +  item.name  + "</h2>" + //"<a href= '" + item.url + "'>" +
-			"<img class ='side_image' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
-			"<p class= 'igdb_storyline '>" + item.summary + "</p>" + 
-			"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" +
-			"</div>";
+			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
+			"<p class= 'igdb_storyline col_8'>" + item.summary + "</p>"; 
+			// +"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" + "</div>";
 		});
 		//how to remove undefined results? (if item returns undefined, return "")
 	}
@@ -128,7 +127,7 @@ $(function(){submitHandler();});
 // to get youtube vid results: 
 
 function submitYOUTUBEHandler() {
-	$(".vid_results_button").click(function(event) {
+	$(".vid_results_button").submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".title_search").val();
 		console.log(query);
