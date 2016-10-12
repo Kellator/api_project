@@ -80,7 +80,7 @@ function displaySearchResultsIGDB(data, type) {
 	if (data) {
 		data.forEach(function(item) {
 			resultElement += "<div class= 'igdb_result_return  col_12'>" + "<a href= '" + item.url + "'>" +
-			"<h2>" +  item.name + "</h2>" + //"<a href= '" + item.url + "'>" +
+			"<h2 class = 'title_search'>" +  item.name + "</h2>" + //"<a href= '" + item.url + "'>" +
 			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
 			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + item.summary + "</p>" +
 			"<iframe width='420' height='315' class= 'trailer_view_window' src = 'https://www.youtube.com/embed/" + item.videos.video_id + "?autoplay=0'>" +  "</iframe>" +
@@ -153,17 +153,16 @@ function submitHandler() {
 $(function(){submitHandler();});
 // to get youtube vid results: 
 
-// function submitYOUTUBEHandler() {
-// 	$(".vid_results_button").submit(function(event) {
-// 		event.preventDefault();
-// 		var query = $(this).find(".title_search").val();
-// 		console.log(query);
-//  		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
-//  		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
-//  		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
-//  		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
-// 	});
-// }
-// console.log();
-// $(function(){submitYOUTUBEHandler();});
+function submitYOUTUBEHandler() {
+	$(".vid_results_button").submit(function(event) {
+		event.preventDefault();
+		var query = $(this).find(".title_search").val();
+		console.log(query);
+ 		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
+	});
+}
+$(function(){submitYOUTUBEHandler();});
 
