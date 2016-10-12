@@ -50,13 +50,15 @@ function makeRequestIGDB(searchTerm, type, callback) {
 
 
 	//makes request to youtube for walkthroughs search results
-	function makeRequestYOUTUBE(searchTerm, type, callback) {
+	function makeRequestYOUTUBE(searchTerm, index, type, callback) {
+		searchTerm = searchTerm.replace(/:/g, "").replace(/ /g, "+");
+		console.log(searchTerm);
 		var settings = {
 			url: youtube_base_url,
 			
 			data: {
 				key: youtube_key,
-				q: searchTerm + " " + type,
+				q: searchTerm + "+" + type,
 				r:"json",
 				part: "snippet",
 				type: "video",
@@ -67,7 +69,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			},
 			dataType: 'json',
 			success: function(data){
-				callback(data, type);
+				callback(data, index, type);
 			}
 		};
 	$.ajax(settings);
@@ -78,11 +80,11 @@ function displaySearchResultsIGDB(data, type) {
 	console.log(data);
 	var resultElement = "";
 	if (data) {
-		data.forEach(function(item) {
-			resultElement += "<div class= 'igdb_result_return  col_12'>" + "<a href= '" + item.url + "'>" +
-			"<h2 class = 'title_search'>" +  item.name + "</h2>" + //"<a href= '" + item.url + "'>" +
+		$.each(data, function(index, item) {
+			resultElement = "<div class= 'igdb_result_return  col_12'>" +
+			"<a href= '" + item.url + "'>" + "<h2 class = 'title_search'>" +  item.name + "</h2></a>" + //"<a href= '" + item.url + "'>" +
 			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
-			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + item.summary + "</p>" +
+			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "") + "</p>" +
 			"<iframe width='420' height='315' class= 'trailer_view_window' src = 'https://www.youtube.com/embed/" + item.videos.video_id + "?autoplay=0'>" +  "</iframe>" +
 			
 			// "<div class='youtube_results js_youtube_results'>" +
@@ -92,12 +94,12 @@ function displaySearchResultsIGDB(data, type) {
 			// 		"<button class='more_trailers js_more_trailers' name='more_trailers_button' id='more_trailers_button'>For More Trailers</button></form>" +
 			// 	"</div>" +
 				//"<div class='youtube_gameplay js_youtube_gameplay result2' >" +
-					"<h2>Gameplay Videos</h2>" + "<div class= 'youtube_gameplay_list col_12'></div>" + 
+					"<h2>Gameplay Videos</h2>" + "<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" + 
 					"<form class='additional_gameplay js_additional_gameplay '>" +
 					"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
 				//"</div>" +
 			// 	"<div class='youtube_walkthroughs js_youtube_walkthroughs'>" +
-					"<h2>Walkthorough Videos</h2>" + "<div class= 'youtube_walkthrough_list col_12'></div>" + 
+					"<h2>Walkthorough Videos</h2>" + "<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" + 
 					"<form class='additional_walkthrough js_additional_walkthrough '>" +
 					"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +			
 			// 	"</div>" +
@@ -108,9 +110,10 @@ function displaySearchResultsIGDB(data, type) {
 			// 	"</div>" +
 			// "</div>" +
 			"</div>"; 
+			$(".igdb_" + type + "_results_list").append(resultElement);
 		// makeRequestYOUTUBE(item.name, "trailer", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(item.name, "gameplay", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(item.name, "walkthrough", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
  	// 	makeRequestYOUTUBE(item.name, "commentary", displaySearchResultsYOUTUBE);
 			// +"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" + "</div>";
 		});
@@ -119,12 +122,12 @@ function displaySearchResultsIGDB(data, type) {
 	else {
 		resultElement += "<p>Sorry.  No results.  Try again. </p>"
 	}
-	$(".igdb_" + type + "_results_list").html(resultElement);
+	//$(".igdb_" + type + "_results_list").html(resultElement);
 }
 
 
 //renders Youtube results
-function displaySearchResultsYOUTUBE(data, type) {
+function displaySearchResultsYOUTUBE(data, index, type) {
 	var resultElement = "";
 	if (data.items) {
 		data.items.forEach(function(item) {
@@ -136,7 +139,7 @@ function displaySearchResultsYOUTUBE(data, type) {
 else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
 }
-$(".youtube_" + type + "_list").html(resultElement);
+$(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
 }
 
 
@@ -152,7 +155,6 @@ function submitHandler() {
 }
 $(function(){submitHandler();});
 // to get youtube vid results: 
-
 function submitYOUTUBEHandler() {
 	$(".vid_results_button").submit(function(event) {
 		event.preventDefault();
@@ -165,4 +167,5 @@ function submitYOUTUBEHandler() {
 	});
 }
 $(function(){submitYOUTUBEHandler();});
+
 
