@@ -60,7 +60,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 				r:"json",
 				part: "snippet",
 				type: "video",
-				maxResults: 2,
+				maxResults: 3,
 				relevanceLanguage: "en",
 				nextPageToken: "",
 				prevPageToken: "",
@@ -90,15 +90,15 @@ function displaySearchResultsIGDB(data, type) {
 			// 		"<form class='additional_trailers js_additional_trailers '>" +
 			// 		"<button class='more_trailers js_more_trailers' name='more_trailers_button' id='more_trailers_button'>For More Trailers</button></form>" +
 			// 	"</div>" +
-				"<div class='youtube_gameplay js_youtube_gameplay result2' >" +
-					"<div class= 'youtube_gameplay_list col_8'></div>" +
+				//"<div class='youtube_gameplay js_youtube_gameplay result2' >" +
+					"<div class= 'youtube_gameplay_list col_12'></div>" +
 					"<form class='additional_gameplay js_additional_gameplay '>" +
 					"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
-				"</div>" +
+				//"</div>" +
 			// 	"<div class='youtube_walkthroughs js_youtube_walkthroughs'>" +
-			// 		"<div class= 'youtube_walkthrough_list'></div>" +
-			// 		"<form class='additional_walkthrough js_additional_walkthrough '>" +
-			// 		"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +			
+					"<div class= 'youtube_walkthrough_list col_12'></div>" +
+					"<form class='additional_walkthrough js_additional_walkthrough '>" +
+					"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +			
 			// 	"</div>" +
 			// 	"<div class='youtube_commentary js_youtube_commentary result4'>" +
 			// 		"<div class= 'youtube_commentary_list'></div>" +
@@ -109,7 +109,7 @@ function displaySearchResultsIGDB(data, type) {
 			"</div>"; 
 		// makeRequestYOUTUBE(item.name, "trailer", displaySearchResultsYOUTUBE);
  			 makeRequestYOUTUBE(item.name, "gameplay", displaySearchResultsYOUTUBE);
- 	// 	makeRequestYOUTUBE(item.name, "walkthrough", displaySearchResultsYOUTUBE);
+ 		makeRequestYOUTUBE(item.name, "walkthrough", displaySearchResultsYOUTUBE);
  	// 	makeRequestYOUTUBE(item.name, "commentary", displaySearchResultsYOUTUBE);
 			// +"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" + "</div>";
 		});

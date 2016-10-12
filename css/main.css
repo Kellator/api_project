@@ -70,8 +70,9 @@ a:visited {
 	padding: 0 20px 20px 20px;
 	vertical-align: top;
 }
-.youtube_gameplay_list {
+.youtube_gameplay_list, .youtube_walkthrough_list {
 	display: inline-block;
+	margin: 10px;
 }
 .bold_text {
 	font-weight: bold;
