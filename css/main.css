@@ -20,6 +20,9 @@ h3 {
 	font-size: 50px;
 	margin: 20px 0 60px 40px;
 }
+h2 {
+	padding-left: 14px;
+}
 footer {
 	bottom: 0;
 	left: 0;
@@ -64,13 +67,14 @@ a:visited {
 }
 .side_image {
 	display: inline-block;
+	padding-left: 14px;
 }
 .igdb_result_return p {
 	display: inline-block;
-	padding: 0 20px 20px 20px;
+	padding: 20px;
 	vertical-align: top;
 }
-.youtube_gameplay_list, .youtube_walkthrough_list {
+.youtube_gameplay_list, .youtube_walkthrough_list, .trailer_view_window {
 	display: inline-block;
 	margin: 10px;
 }
