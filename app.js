@@ -52,8 +52,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	//makes request to youtube for walkthroughs search results
 	function makeRequestYOUTUBE(searchTerm, index, type, callback) {
 		searchTerm = searchTerm.replace(/:/g, "").replace(/ /g, "+");
-		console.log(searchTerm);
-		var settings = {
+			var settings = {
 			url: youtube_base_url,
 			
 			data: {
@@ -63,9 +62,9 @@ function makeRequestIGDB(searchTerm, type, callback) {
 				part: "snippet",
 				type: "video",
 				maxResults: 3,
+				pageToken: "",
 				relevanceLanguage: "en",
-				nextPageToken: "",
-				prevPageToken: "",
+
 			},
 			dataType: 'json',
 			success: function(data){
@@ -73,7 +72,6 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			}
 		};
 	$.ajax(settings);
-	console.log();
 	}
 	
 function displaySearchResultsIGDB(data, type) {
@@ -82,47 +80,38 @@ function displaySearchResultsIGDB(data, type) {
 	if (data) {
 		$.each(data, function(index, item) {
 			resultElement = "<div class= 'igdb_result_return  col_12'>" +
-			"<a href= '" + item.url + "'>" + "<h2 class = 'title_search'>" +  item.name + "</h2></a>" + //"<a href= '" + item.url + "'>" +
-			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
+			"<a href= '" + item.url + "'>" + "<h2 class = 'title_search'>" +  item.name + "</h2></a>" + 
 			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "") + "</p>" +
-			"<iframe width='420' height='315' class= 'trailer_view_window' src = 'https://www.youtube.com/embed/" + item.videos.video_id + "?autoplay=0'>" +  "</iframe>" +
-			
-			// "<div class='youtube_results js_youtube_results'>" +
-			// 	"<div class='youtube_trailers js_youtube_trailers result1'>" +
-			// 		"<div class= 'youtube_trailers_list'></div>" +
-			// 		"<form class='additional_trailers js_additional_trailers '>" +
-			// 		"<button class='more_trailers js_more_trailers' name='more_trailers_button' id='more_trailers_button'>For More Trailers</button></form>" +
-			// 	"</div>" +
-				//"<div class='youtube_gameplay js_youtube_gameplay result2' >" +
-					"<h2>Gameplay Videos</h2>" + "<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" + 
-					"<form class='additional_gameplay js_additional_gameplay '>" +
+			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
+
+			"<iframe id = 'ytplayer' type= 'text/html' width='320' height='195' class= 'trailer_view_window' src= 'https://www.youtube.com/embed/" + item.videos.video_id + "?autoplay=0'>" +  "</iframe>" +
+
+				"<div class= 'gameplay_section'>" +
+					"<h2 class= 'vid_heading'>Gameplay Videos</h2>" +  
+					"<form class='additional_button js_additional_gameplay '>" +
 					"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
-				//"</div>" +
-			// 	"<div class='youtube_walkthroughs js_youtube_walkthroughs'>" +
-					"<h2>Walkthorough Videos</h2>" + "<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" + 
-					"<form class='additional_walkthrough js_additional_walkthrough '>" +
-					"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +			
-			// 	"</div>" +
-			// 	"<div class='youtube_commentary js_youtube_commentary result4'>" +
-			// 		"<div class= 'youtube_commentary_list'></div>" +
-			// 		"<form class='additional_commentary js_additional_commentary '>" +
-			// 		"<button class='more_commentary js_more_commentary' name='more_commentary_button' id='more_commentary_button'>For More Commentary</button></form>" +
-			// 	"</div>" +
-			// "</div>" +
+				"</div>"+
+				"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
+
+				"<div class= 'walkthrough_section'>" +
+					"<h2 class= 'vide_heading'>Walkthorough Videos</h2>" +  
+					"<form class='additional_button js_additional_walkthrough '>" +
+					"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +	
+				"</div>" +	
+				"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +		
+
 			"</div>"; 
 			$(".igdb_" + type + "_results_list").append(resultElement);
-		// makeRequestYOUTUBE(item.name, "trailer", displaySearchResultsYOUTUBE);
+			console.log(item.videos.video_id);
+
  		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
- 	// 	makeRequestYOUTUBE(item.name, "commentary", displaySearchResultsYOUTUBE);
-			// +"<button class='vid_results' name='vid_results_button id='vid_results_button>Display Video Results</button>" + "</div>";
+
 		});
-		//how to remove undefined results? (if item returns undefined, return "")
 	}
 	else {
 		resultElement += "<p>Sorry.  No results.  Try again. </p>"
 	}
-	//$(".igdb_" + type + "_results_list").html(resultElement);
 }
 
 
@@ -141,6 +130,7 @@ else {
 }
 $(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
 }
+
 
 
 //button handler for search button
@@ -168,4 +158,12 @@ function submitYOUTUBEHandler() {
 }
 $(function(){submitYOUTUBEHandler();});
 
-
+// function morelWalkthroughsHandler() {
+// 	$(".js_additional_walkthrough").submit(function(event) {
+// 		event.preventDefault();
+// 		nextPageToken = item.id.nextPageToken;
+// 		console.log(nextPageToken);
+// 		makeRequestYOUTUBE(query, nextPageToken, "walkthrough", displaySearchResultsYOUTUBE);
+// 	});
+// }
+// $(function(){morelWalkthroughsHandler();});
