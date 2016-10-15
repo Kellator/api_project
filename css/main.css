@@ -80,7 +80,6 @@ a:visited {
 }
 .side_image {
 	display: inline-block;
-	vertical-align: center;
 }
 .igdb_result_return p {
 	display: inline-block;
