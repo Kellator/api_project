@@ -43,6 +43,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		dataType: 'json',
 		success: function(data) {
 			callback(data,type);
+			console.log(data);
 		}
 	};
 	$.ajax(settings);
@@ -76,21 +77,18 @@ function makeRequestIGDB(searchTerm, type, callback) {
 
 
 function displaySearchResultsIGDB(data, type) {
-	console.log(data);
 	var resultElement = "";
 	if (data) {
 		$.each(data, function(index, item) {
 			resultElement = 
 	"<div class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
-		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br><span class='minor_headline'>Trailer:</span><br>" +
-		"<iframe id = 'ytplayer' type= 'text/html' width='320' height='195' class= 'trailer_view_window' src= 'https://www.youtube.com/embed/" + item.videos.video_id + 
-				"?autoplay=0'>" +  "</iframe>" + "</p><br>" + 
-				"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div>" + 
+		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br>" +
+		"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
 
 		"<div class= 'gameplay_section youtube_results row '>" +
 			"<h1>Gameplay Videos</h1>" +  
 			"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
-				"<form class='additional_button js_additional_gameplay '>" +
+				"<form class=' additional_button js_additional_gameplay '>" +
 					"<button type= 'button' class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
 				"</form>" +
 		"</div>"+
@@ -126,7 +124,7 @@ function displaySearchResultsYOUTUBE(data, index, type) {
 		data.items.forEach(function(item) {
 		resultElement += "<div class ='result_container col_4'" + 
 		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
-		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
+ 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
 	});
 }
 else {
@@ -140,7 +138,6 @@ function submitHandler() {
 	$(".js_search_game").submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		console.log(query);
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
 
 	});
