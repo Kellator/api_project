@@ -69,12 +69,12 @@ a:visited {
 
 .igdb_result_return {
 	background-color: #1a1a1a;
-	/*margin: 20px;
-	padding: 20px;*/
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+
 }
 .igdb_games_results_list {
 	position: relative;
-	background-color: #1a1a1a;
 }
 .side_image {
 	display: inline-block;
@@ -86,8 +86,18 @@ a:visited {
 }
 .youtube_gameplay_list, .youtube_walkthrough_list, .trailer_view_window {
 	display: inline-block;
+	position: relative;
 }
 .bold_text {
 	font-weight: bold;
 	font-stretch: extra-expanded;
+}
+.youtube_results {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.additional_button {
+	position: relative;
+	right: 20px;
+
 }

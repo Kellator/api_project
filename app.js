@@ -79,27 +79,27 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	if (data) {
 		$.each(data, function(index, item) {
-			resultElement = //"<div class= 'igdb_result_return  row'>" +
+			resultElement = "<div class= 'igdb_result_return  row'>" +
 			"<a href= '" + item.url + "'>" + "<h2 class = 'title_search'>" +  item.name + "</h2></a>" + 
-			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "") + "</p>" +
+			"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No result in this section.") + "</p>" +
 			"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</>" + 
 
 			"<iframe id = 'ytplayer' type= 'text/html' width='320' height='195' class= 'trailer_view_window' src= 'https://www.youtube.com/embed/" + item.videos.video_id + "?autoplay=0'>" +  "</iframe>" +
 
-				"<div class= 'gameplay_section row'>" +
+				"<div class= 'gameplay_section youtube_results row '>" +
 					"<h2 class= 'vid_heading'>Gameplay Videos</h2>" +  
 					"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
-					"<form class='additional_button js_additional_gameplay '>" +
+						"<form class='additional_button js_additional_gameplay '>" +
 						"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
 				"</div>"+
 				
 
-				"<div class= 'walkthrough_section row'>" +
+				"<div class= 'walkthrough_section youtube_results row'>" +
 					"<h2 class= 'vide_heading'>Walkthorough Videos</h2>" +
 					"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
-					"<form class='additional_button js_additional_walkthrough '>" +
++						"<form class='additional_button js_additional_walkthrough '>" +
 						"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +	
-				//"</div>" +	
+				"</div>" +	
 					
 
 			"</div>"; 

@@ -4,8 +4,8 @@
 
 .row {
 	max-width: 1000px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	margin: 0 auto;
 }
 
@@ -36,39 +36,25 @@
 html {
 	font-size: 100%;
 }
-.col_1{
-	width:	6.25%;
-}
+
 .col_2{
-	width: 12.5%;
+	width: 16%;
 }
 .col_3{
-	width: 18.75%;
-}
-.col_4{
 	width: 25%;
 }
-.col_5{
-	width: 31.25%;
+.col_4{
+	width: 33.3%;
 }
 .col_6{
-	width: 37.5%;
-}
-.col_7{
-	width: 43.75%;
-}
-.col_8{
 	width: 50%;
 }
+.col_8{
+	width: 66.6%;
+}
 .col_9{
-	width: 56.25%;
-}
-.col_10{
-	width: 62.5%;
-}
-.col_11{
-	width: 68.75%;
+	width: 75%;
 }
 .col_12{
-	width: 75%;
+	width: 100%;
 }
