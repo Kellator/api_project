@@ -98,6 +98,10 @@ a:visited {
 	font-family: 'Orbitron', sans-serif;
 	font-size: 2em;
 }
+.minor_headline {
+	font-family: 'Orbitron', sans-serif;
+	font-size: 1.75em;
+}
 .youtube_results {
 	background-color: #1a1a1a;
 
