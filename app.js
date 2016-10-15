@@ -73,7 +73,8 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		};
 	$.ajax(settings);
 	}
-	
+
+
 function displaySearchResultsIGDB(data, type) {
 	console.log(data);
 	var resultElement = "";
@@ -81,7 +82,7 @@ function displaySearchResultsIGDB(data, type) {
 		$.each(data, function(index, item) {
 			resultElement = 
 	"<div class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
-		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No result in this section.") + "<br>" +
+		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br><span class='minor_headline'>Trailer:</span><br>" +
 		"<iframe id = 'ytplayer' type= 'text/html' width='320' height='195' class= 'trailer_view_window' src= 'https://www.youtube.com/embed/" + item.videos.video_id + 
 				"?autoplay=0'>" +  "</iframe>" + "</p><br>" + 
 				"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div>" + 
@@ -134,8 +135,6 @@ else {
 $(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
 }
 
-
-
 //button handler for search button
 function submitHandler() {
 	$(".js_search_game").submit(function(event) {
@@ -146,30 +145,29 @@ function submitHandler() {
 
 	});
 }
-
+$(function(){submitHandler();});
 
 // to get youtube vid results: 
-function moreResults(data, index, type) {
-	var additionalResults = "";
-	if (data.items.nextPageToken) {
-		data.items.nextPageToken.forEach(function(item) {
-			additionalResults += "<div class ='result_container col_4'" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
-		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
-	});
-}
-else {
-	resultElement += "<p>I'm sorry, no additional video results available.  Try again.</p>"
-}
-$(".youtube_" + type + "_list[value= " + index + "] ").html(additionalResults);
-}
+// function moreResults(data, index, type) {
+// 	var additionalResults = "";
+// 	if (data.nextPageToken) {
+// 		data.nextPageToken.forEach(function(item) {
+// 			additionalResults += "<div class ='result_container col_4'" + 
+// 		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
+// 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
+// 	});
+// }
+// else {
+// 	resultElement += "<p>I'm sorry, no additional video results available.  Try again.</p>"
+// }
+// $(".youtube_" + type + "_list[value= " + index + "] ").html(additionalResults);
+// }
 
-function moreResultsHandler() {		
-	$(".additional_button").click(function(event) {
-		event.preventDefault();
-		$(this).show(item.nextPageToken);
-		console.log(nextPageToken);
-	});
-}
-$(function(){submitHandler();});
+// function moreResultsHandler() {		
+// 	$(".additional_button").click(function(event) {
+// 		event.preventDefault();
+// 		var query = $(this).;
+// 	});
+// }
+
 
