@@ -90,7 +90,7 @@ function displaySearchResultsIGDB(data, type) {
 			"<h1>Gameplay Videos</h1>" +  
 			"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
 				"<form class='additional_button js_additional_gameplay '>" +
-					"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
+					"<button type= 'button' class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
 				"</form>" +
 		"</div>"+
 				
@@ -99,7 +99,7 @@ function displaySearchResultsIGDB(data, type) {
 			"<h1>Walkthorough Videos</h1>" +
 			"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
 				"<form class='additional_button js_additional_walkthrough '>" +
-					"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
+					"<button type= 'button' class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
 				"</form>" +	
 		"</div>" +	
 					
