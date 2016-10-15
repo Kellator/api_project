@@ -43,6 +43,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		dataType: 'json',
 		success: function(data) {
 			callback(data,type);
+			console.log(data);
 		}
 	};
 	$.ajax(settings);
@@ -76,14 +77,13 @@ function makeRequestIGDB(searchTerm, type, callback) {
 
 
 function displaySearchResultsIGDB(data, type) {
-	console.log(data);
 	var resultElement = "";
 	if (data) {
 		$.each(data, function(index, item) {
 			resultElement = 
 	"<div class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
 		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br><span class='minor_headline'>Trailer:</span><br>" +
-		"<iframe id = 'ytplayer' type= 'text/html' width='320' height='195' class= 'trailer_view_window' src= 'https://www.youtube.com/embed/" + item.videos.video_id + 
+		"<iframe id = 'ytplayer' type= 'text/html' width='320' height='195' class= 'trailer_view_window' src= 'https://www.youtube.com/embed/" + "1rPxiXXxftE" + 
 				"?autoplay=0'>" +  "</iframe>" + "</p><br>" + 
 				"<img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div>" + 
 
@@ -140,7 +140,6 @@ function submitHandler() {
 	$(".js_search_game").submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		console.log(query);
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
 
 	});
