@@ -18,13 +18,16 @@ form {
 	font-family: 'Orbitron', sans-serif;
 	font-size 2em;
 }
-h1 {
+h1,h2,h3 {
+	font-family: 'Orbitron', sans-serif;
+}
+header h1 {
 	font-family: 'Orbitron', sans-serif;
 	font-size: 8em;
 	/*margin-left: 40px;*/
 	margin-bottom: 5px;
 }
-h3 {
+header h3 {
 	font-family: 'Orbitron', sans-serif;
 	font-size: 3em;
 	margin: 20px 0 60px 40px;
@@ -43,6 +46,11 @@ footer {
 a:visited {
 	color: #008000;
 
+}
+.gameplay_list, .walkthrough_list {
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
 .search_input, button {
 	color: #00001a;
@@ -67,10 +75,8 @@ a:visited {
 	padding-right: 5px;
 }*/
 
-.igdb_result_return {
+.igdb_result_return, .youtube_results {
 	background-color: #1a1a1a;
-	margin-bottom: 20px;
-	padding-bottom: 10px;
 
 }
 .igdb_games_results_list {
@@ -78,26 +84,31 @@ a:visited {
 }
 .side_image {
 	display: inline-block;
+	vertical-align: center;
 }
 .igdb_result_return p {
 	display: inline-block;
 	vertical-align: top;
 
 }
-.youtube_gameplay_list, .youtube_walkthrough_list, .trailer_view_window {
+.youtube_gameplay_list, .youtube_walkthrough_list {
 	display: inline-block;
 	position: relative;
 }
 .bold_text {
 	font-weight: bold;
 	font-stretch: extra-expanded;
+	font-family: 'Orbitron', sans-serif;
+	font-size: 2em;
 }
 .youtube_results {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	background-color: #1a1a1a;
+
 }
 .additional_button {
 	position: relative;
 	right: 20px;
-
+}
+.walkthrough_section {
+	margin-bottom: 20px;
 }
