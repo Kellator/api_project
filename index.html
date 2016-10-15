@@ -16,27 +16,27 @@
 </head>
 <body>
 <header row>
-	<div class="page_title col_12">
-		<h1>gamesHub</h1>
+	<div class="row">
+		<h1 class="page_title col_12">gamesHub</h1>
 	</div>
 	<!--heading gamesHub is static.  fading text cycles through 5 phrases-->
-	<div class="fading_text col_12">
-	<h3>sample of scrolling text</h3>
+	<div class="row">
+	<h3 class="fading_text col_12">find, watch, and learn</h3>
 		
 	</div>
 </header>	
 	<!--search fields provide options for search IGDB by title, genre, platform-->
-	<div class="search_fields">
+	<div class="search_fields row">
 
 		<form class="search_game js_search_game">
 		<label for="search_input"></label>
 			<input class="js_search_input search_input " type="text" name="search_input" placeholder="search by game title, genre, platform, etc">
-			<button class="search_submit" id= "js_search_submit" type="submit" name="search_submit">search</button>
+			<button class="js_search_submit" id= "search_submit" type="submit" name="search_submit">search</button>
 		</form>
 
-		<form class="reset_search_fields">
-			<button class="reset_search" name="reset_search_button" id="reset_search_button">reset search</button>
-		</form>
+	<form class="reset_search_fields">
+		<button class="js_reset_search" name="reset_search_button" id="reset_search_button">reset search</button>
+	</form>
 
 	</div>
 
@@ -47,19 +47,19 @@
 	
 
 <!--video results is separate section divided in two: youtube/Twitch.  -->
-	<div class="video_results row" >
+<!-- 	<div class="video_results row" > -->
 
 <!--navigations buttons should appear in the Twitch window for styling but not be controlled by results coding-->
-		<div class="twitch_results js_twitch_results">
+<!-- 		<div class="twitch_results js_twitch_results">
 			<div class="twitch_livestream"></div>
 			<div class="twitch_channels"></div>
 			<div class="navigation_buttons">
-				<button class="mores_results">more results</button>
+				<button class="more_results">more results</button>
 				<button class="return_to_search" href=".search_game">new search</button>
 			</div>
 		</div>
 
-	</div>
+	</div> -->
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="app.js"></script>
 

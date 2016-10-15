@@ -47,8 +47,6 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	};
 	$.ajax(settings);
 }
-
-
 	//makes request to youtube for walkthroughs search results
 	function makeRequestYOUTUBE(searchTerm, index, type, callback) {
 		searchTerm = searchTerm.replace(/:/g, "").replace(/ /g, "+");
@@ -62,13 +60,15 @@ function makeRequestIGDB(searchTerm, type, callback) {
 				part: "snippet",
 				type: "video",
 				maxResults: 3,
-				pageToken: "",
+				nextPageToken: "",
+				prevPageToken: "",
 				relevanceLanguage: "en",
 
 			},
 			dataType: 'json',
 			success: function(data){
 				callback(data, index, type);
+				console.log(data);
 			}
 		};
 	$.ajax(settings);
@@ -88,21 +88,22 @@ function displaySearchResultsIGDB(data, type) {
 
 				"<div class= 'gameplay_section'>" +
 					"<h2 class= 'vid_heading'>Gameplay Videos</h2>" +  
+					"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
 					"<form class='additional_button js_additional_gameplay '>" +
 					"<button class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button></form>" +
 				"</div>"+
-				"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
+				
 
 				"<div class= 'walkthrough_section'>" +
-					"<h2 class= 'vide_heading'>Walkthorough Videos</h2>" +  
+					"<h2 class= 'vide_heading'>Walkthorough Videos</h2>" +
+					"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
 					"<form class='additional_button js_additional_walkthrough '>" +
 					"<button class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button></form>" +	
 				"</div>" +	
-				"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +		
+					
 
 			"</div>"; 
 			$(".igdb_" + type + "_results_list").append(resultElement);
-			console.log(item.videos.video_id);
 
  		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
@@ -143,27 +144,30 @@ function submitHandler() {
 
 	});
 }
-$(function(){submitHandler();});
+
+
 // to get youtube vid results: 
-function submitYOUTUBEHandler() {
-	$(".vid_results_button").submit(function(event) {
-		event.preventDefault();
-		var query = $(this).find(".title_search").val();
-		console.log(query);
- 		makeRequestYOUTUBE(query, "trailer", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(query, "gameplay", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(query, "walkthrough", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(query, "commentary", displaySearchResultsYOUTUBE);
+function moreResults(data, index, type) {
+	var additionalResults = "";
+	if (data.items.nextPageToken) {
+		data.items.nextPageToken.forEach(function(item) {
+			additionalResults += "<div class ='result_container col_4'" + 
+		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
+		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
 	});
 }
-$(function(){submitYOUTUBEHandler();});
+else {
+	resultElement += "<p>I'm sorry, no additional video results available.  Try again.</p>"
+}
+$(".youtube_" + type + "_list[value= " + index + "] ").html(additionalResults);
+}
 
-// function morelWalkthroughsHandler() {
-// 	$(".js_additional_walkthrough").submit(function(event) {
-// 		event.preventDefault();
-// 		nextPageToken = item.id.nextPageToken;
-// 		console.log(nextPageToken);
-// 		makeRequestYOUTUBE(query, nextPageToken, "walkthrough", displaySearchResultsYOUTUBE);
-// 	});
-// }
-// $(function(){morelWalkthroughsHandler();});
+function moreResultsHandler() {		
+	$(".additional_button").click(function(event) {
+		event.preventDefault();
+		$(this).show(item.nextPageToken);
+		console.log(nextPageToken);
+	});
+}
+$(function(){submitHandler();});
+
