@@ -146,30 +146,29 @@ function submitHandler() {
 
 	});
 }
-
+$(function(){submitHandler();});
 
 // to get youtube vid results: 
-function moreResults(data, index, type) {
-	var additionalResults = "";
-	if (data.items.nextPageToken) {
-		data.items.nextPageToken.forEach(function(item) {
-			additionalResults += "<div class ='result_container col_4'" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
-		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
-	});
-}
-else {
-	resultElement += "<p>I'm sorry, no additional video results available.  Try again.</p>"
-}
-$(".youtube_" + type + "_list[value= " + index + "] ").html(additionalResults);
-}
+// function moreResults(data, index, type) {
+// 	var additionalResults = "";
+// 	if (data.nextPageToken) {
+// 		data.nextPageToken.forEach(function(item) {
+// 			additionalResults += "<div class ='result_container col_4'" + 
+// 		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
+// 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
+// 	});
+// }
+// else {
+// 	resultElement += "<p>I'm sorry, no additional video results available.  Try again.</p>"
+// }
+// $(".youtube_" + type + "_list[value= " + index + "] ").html(additionalResults);
+// }
 
-function moreResultsHandler() {		
-	$(".additional_button").click(function(event) {
-		event.preventDefault();
-		$(this).show(item.nextPageToken);
-		console.log(nextPageToken);
-	});
-}
-$(function(){submitHandler();});
+// function moreResultsHandler() {		
+// 	$(".additional_button").click(function(event) {
+// 		event.preventDefault();
+// 		var query = $(this).;
+// 	});
+// }
+
 
