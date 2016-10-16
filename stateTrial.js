@@ -7,6 +7,27 @@ var state = {
 function setRoute(state, route) {
 	state.route = route;
 };
+function makeRequestIGDB(searchTerm, type, callback) {
+	var settings = {
+		url: igdb_base_url + "/" + type + "/",
+		data: {
+			fields: "*",
+			limit: 10,
+			offset: 0,
+			order: "release_dates.date:desc",
+			search: searchTerm
+		},
+		headers: {
+			"X-Mashape-Key": igdb_key
+		},
+		dataType: 'json',
+		success: function(data) {
+			callback(data,type);
+			console.log(data);
+		}
+	};
+	$.ajax(settings);
+}
 //return index 0-2 should show
 //return index 3-5 should start as hidden until user clicks on button for additional results
 function hideAdditionalResults(value) {

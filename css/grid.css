@@ -19,13 +19,13 @@
 .row::after {
 	clear: both;
 }
-.col_4, .col_12, .col_3, .col_6, .col_8, .col_2{
+.col_4, .col_12, .col_3, .col_5, .col_6, .col_8, .col_2{
 	float: left;
   	padding-left: 1.04166666%;
   	padding-right: 1.04166666%;
 }
 /*mobile device default settings*/
-.col_4, .col_12, .col_3, .col_6, .col_8, .col_2{
+.col_4, .col_12, .col_3, .col_5,  .col_6, .col_8, .col_2{
 	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
@@ -45,6 +45,9 @@ html {
 }
 .col_4{
 	width: 33.3%;
+}
+.col_5{
+	width: 42%;
 }
 .col_6{
 	width: 50%;

@@ -106,10 +106,12 @@ function displaySearchResultsIGDB(data, type) {
  		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
 		});
 	}
+
 	else {
 		resultElement += "<p>Sorry.  No results.  Try again. </p>"
 	}
 }
+
 //renders Youtube results
 function displaySearchResultsYOUTUBE(data, index, type) {
 	var resultElement = "";

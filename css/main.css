@@ -19,8 +19,13 @@ form {
 	font-family: 'Orbitron', sans-serif;
 	font-size 2em;
 }
+.page_title, .fading_text {
+	margin-left: 0;
+	padding-left: 0;
+}
 h1,h2,h3 {
 	font-family: 'Orbitron', sans-serif;
+
 }
 
 }
@@ -46,9 +51,10 @@ a:visited {
 }
 .search_input, button {
 	color: #00001a;
-	margin-bottom: 4px;
 	font-size: 1.75em;
+	border: 0;
 }
+
 #share-buttons img {
 	width: 35px;
 	padding: 5px;
@@ -63,6 +69,8 @@ a:visited {
 	margin-bottom: 20px;
 	font-size: 1em;
 	margin-top: 10px;
+	margin-left: 0;
+	padding-left: 0;
 }
 /*.result_container {
 	background-image: none;
@@ -119,4 +127,7 @@ button:hover {
 }
 #reset_search_button {
 	font-size: 1em;
+}
+#search_submit {
+	margin-left: 4px;
 }
