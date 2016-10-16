@@ -126,8 +126,15 @@ button:hover {
 	background-color: #009933;
 }
 #reset_search_button {
-	font-size: 1em;
+	font-size: 1.25em;
 }
 #search_submit {
 	margin-left: 4px;
+}
+button {
+	border: 0;
+}
+.additional_results {
+	font-size: .8em;
+	padding: 3px;
 }
