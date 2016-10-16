@@ -30,7 +30,7 @@
 
 		<form class="search_game js_search_game">
 		<label for="search_input"></label>
-			<input class="js_search_input search_input col_6" type="text" name="search_input" placeholder="GuildWars2 or Zelda">
+			<input class="js_search_input search_input col_6" type="text" onfocus="this.value='';" name="search_input" placeholder="GuildWars2 or Zelda">
 			<button class="js_search_submit" id= "search_submit" type="submit" name="search_submit">search</button>
 		</form>
 
@@ -41,8 +41,11 @@
 	</div>
 
 <!--results section should display after the search has been completed and show intial 3 search results-->
-	<div class= "igdb_games_results_list row"></div>		
-
+	<div class= "igdb_games_results_list row"></div>
+			<!-- <div class="navigation_buttons">
+				<button class="more_results">more results</button>
+				<button class="return_to_search" href=".search_game">new search</button>
+			</div> -->
 	
 
 <!--video results is separate section divided in two: youtube/Twitch.  -->
@@ -52,10 +55,7 @@
 <!-- 		<div class="twitch_results js_twitch_results">
 			<div class="twitch_livestream"></div>
 			<div class="twitch_channels"></div>
-			<div class="navigation_buttons">
-				<button class="more_results">more results</button>
-				<button class="return_to_search" href=".search_game">new search</button>
-			</div>
+
 		</div>
 
 	</div> -->

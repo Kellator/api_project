@@ -131,7 +131,8 @@ function submitHandler() {
 	$(".js_search_game").submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		makeRequestIGDB(query, "games", displaySearchResultsIGDB);		
+		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
+		$( ".nav_button" ).toggleClass( ".hidden", addOrRemove );		
 	});
 }
 
