@@ -32,7 +32,7 @@
 }
 
 /*non-mobile device screens*/
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 640px) {
 html {
 	font-size: 100%;
 }
@@ -74,6 +74,7 @@ header h3 {
 @media only screen and (max-width: 320px) {
 body {
 	background-color: #00001a;
+	font-size: 75%;
 
 }
 }
