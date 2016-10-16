@@ -16,6 +16,10 @@ form {
 	font-family: 'Orbitron', sans-serif;
 	font-size 2em;
 }
+.search_game {
+	margin-left: 0;
+	padding: 0;
+}
 .page_title, .fading_text {
 	margin-left: 0;
 	padding-left: 0;
@@ -66,9 +70,6 @@ a:visited {
 	margin-bottom: 20px;
 	font-size: 1em;
 	margin-top: 10px;
-	margin-left: 0;
-	padding-left: 0;
-	padding-right: 0;
 }
 
 .igdb_result_return, .youtube_results {
@@ -118,10 +119,12 @@ button:hover {
 }
 #reset_search_button {
 	font-size: 1.25em;
+	border: 0;
 }
 
 button {
 	border: 0;
+	background-color: #e0e0d1;
 }
 .additional_results {
 	font-size: .8em;
@@ -160,6 +163,7 @@ body {
 	background-color: #00001a;
 	font-size: 75%;
 }
+
 #search_submit, .search_input {
 	margin-bottom: 10px;
 	border: 0;
