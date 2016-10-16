@@ -3,6 +3,7 @@
 	color: #e6e6ff;
 	font-size: 100%;
 	font-family: 'Aldrich', sans-serif;
+	border: 0;
 }
 body {
 	background-color: #00001a;
@@ -16,10 +17,7 @@ form {
 	font-family: 'Orbitron', sans-serif;
 	font-size 2em;
 }
-.search_game {
-	margin-left: 0;
-	padding: 0;
-}
+
 .page_title, .fading_text {
 	margin-left: 0;
 	padding-left: 0;
