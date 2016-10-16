@@ -97,7 +97,7 @@ function displaySearchResultsIGDB(data, type) {
 			"<h1>Walkthorough Videos</h1>" +
 			"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
 				"<form class='additional_results js_additional_walkthrough '>" +
-					"<button type= 'button' class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
+					"<button type= 'button'  class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
 				"</form>" +	
 			"</div>" +				
 		"</div>"; 
@@ -131,14 +131,23 @@ function submitHandler() {
 	$(".js_search_game").submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
-		$( ".nav_button" ).toggleClass( ".hidden", addOrRemove );		
+		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
 	});
 }
+function moreGameplayHandler() {
+	$("#more_gameplay_button").click(function() {
+		event.preventDefault();
+		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
+		alert("button clicked");
+	});
+}
+$(document).ready(function() {
+	submitHandler();
+	moreGameplayHandler();
+});
+//$(function(){submitHandler();});
 
-$(function(){submitHandler();});
-
-
+//$( ".nav_button" ).toggleClass( ".hidden", addOrRemove );
 // to get youtube vid results: 
 // function moreResults(data, index, type) {
 // 	var additionalResults = "";
