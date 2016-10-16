@@ -82,7 +82,7 @@ function displaySearchResultsIGDB(data, type) {
 	if (data) {
 		$.each(data, function(index, item) {
 			resultElement = 
-	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
+	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
 		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br>" +
 		"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
 
@@ -97,7 +97,7 @@ function displaySearchResultsIGDB(data, type) {
 			"<h1>Walkthorough Videos</h1>" +
 			"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
 				"<form class='additional_results js_additional_walkthrough '>" +
-					"<button type= 'button'  class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
+					"<button type= 'button' onclick='alert(" + 'hello' + ")class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
 				"</form>" +	
 			"</div>" +				
 		"</div>"; 
@@ -116,8 +116,8 @@ function displaySearchResultsYOUTUBE(data, index, type) {
 	if (data.items) {
 		data.items.forEach(function(item) {
 		resultElement += "<div class ='result_container col_4'" + 
-		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
- 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
+		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
+ 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'>" + item.snippet.title + "</a></p>" + "</div>";
 	});
 }
 else {

@@ -36,7 +36,7 @@ footer {
 	margin-left: 40px;
 }
 a:visited {
-	color: #008000;
+	color: #009933;
 
 }
 .gameplay_list, .walkthrough_list {
@@ -112,4 +112,7 @@ a:visited {
 }
 .gameplay_section {
 	padding-bottom: 20px;
+}
+button:hover {
+	background-color: #009933;
 }
