@@ -28,6 +28,9 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	};
 	$.ajax(settings);
 }
+function storeResultsIGDB(data) {
+	var storedData = [],
+}
 //return index 0-2 should show
 //return index 3-5 should start as hidden until user clicks on button for additional results
 function hideAdditionalResults(value) {

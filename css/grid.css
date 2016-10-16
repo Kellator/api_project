@@ -32,7 +32,7 @@
 }
 
 /*non-mobile device screens*/
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 769px) {
 html {
 	font-size: 100%;
 }
@@ -61,23 +61,5 @@ html {
 .col_12{
 	width: 100%;
 }
-header h1 {
-	font-family: 'Orbitron', sans-serif;
-	font-size: 8em;
-	/*margin-left: 40px;*/
-	margin-bottom: 5px;
 
-}
-header h3 {
-	font-family: 'Orbitron', sans-serif;
-	font-size: 3em;
-	margin: 20px 0 60px 40px;
-} 
-}
-@media only screen and (max-width: 320px) {
-body {
-	background-color: #00001a;
-	font-size: 75%;
-
-}
 }

@@ -5,9 +5,6 @@
 	font-family: 'Aldrich', sans-serif;
 }
 body {
-	background-image: url("../images/cubes.png");
-	background-repeat: no-repeat;
-	background-size: cover;
 	background-color: #00001a;
 	background-attachment: fixed;
 }
@@ -71,6 +68,7 @@ a:visited {
 	margin-top: 10px;
 	margin-left: 0;
 	padding-left: 0;
+	padding-right: 0;
 }
 /*.result_container {
 	background-image: none;
@@ -128,13 +126,50 @@ button:hover {
 #reset_search_button {
 	font-size: 1.25em;
 }
-#search_submit {
-	margin-left: 4px;
-}
+
 button {
 	border: 0;
 }
 .additional_results {
 	font-size: .8em;
 	padding: 3px;
+}
+
+
+/*for non-mobile screens*/
+@media only screen and (min-width: 769px) {
+body {
+	background-image: url("../images/cubes.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #00001a;
+	background-attachment: fixed;
+}
+header h1 {
+	font-family: 'Orbitron', sans-serif;
+	font-size: 8em;
+	/*margin-left: 40px;*/
+	margin-bottom: 5px;
+}
+header h3 {
+	font-family: 'Orbitron', sans-serif;
+	font-size: 3em;
+	margin: 20px 0 60px 40px;
+} 
+#search_submit {
+	margin-left: 4px;
+	border: 0;
+}
+
+/*for mobile screens*/
+@media only screen and (max-width: 768px) {
+body {
+	background-color: #00001a;
+	font-size: 75%;
+}
+#search_submit, .search_input {
+	margin-bottom: 10px;
+	border: 0;
+	font-size: 1em;
+}
 }

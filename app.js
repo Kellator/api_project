@@ -31,6 +31,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	var settings = {
 		url: igdb_base_url + "/" + type + "/",
 		data: {
+			async: false,
 			fields: "*",
 			limit: 10,
 			offset: 0,
@@ -42,12 +43,12 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		},
 		dataType: 'json',
 		success: function(data) {
-			callback(data,type);
-			console.log(data);
+			callback(data,type);		
 		}
 	};
 	$.ajax(settings);
 }
+
 //makes request to youtube 
 	function makeRequestYOUTUBE(searchTerm, index, type, callback) {
 		searchTerm = searchTerm.replace(/:/g, "").replace(/ /g, "+");
@@ -55,6 +56,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			url: youtube_base_url,
 			
 			data: {
+				async: false,
 				key: youtube_key,
 				q: searchTerm + "+" + type,
 				r:"json",
@@ -69,21 +71,27 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			dataType: 'json',
 			success: function(data){
 				callback(data, index, type);
-				console.log(data);
 			}
 		};
 	$.ajax(settings);
 }
 
+
 //render functions
 //renders igdb results
 function displaySearchResultsIGDB(data, type) {
+	//stores igdb results:  
+	storedDataIGDB = data;
+	//renders content
 	var resultElement = "";
 	if (data) {
 		$.each(data, function(index, item) {
+			
 			resultElement = 
-	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
-		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br>" +
+	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
+	"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
+		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + 
+		"<br>" + 
 		"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
 
 		"<div class= 'gameplay_section youtube_results row '>" +
@@ -113,9 +121,11 @@ function displaySearchResultsIGDB(data, type) {
 }
 
 //renders Youtube results
-function displaySearchResultsYOUTUBE(data, index, type) {
+function displaySearchResultsYOUTUBE(data, index, type) {	
 	var resultElement = "";
 	if (data.items) {
+		storedDataYoutube = data;
+		console.log(storedDataYoutube);
 		data.items.forEach(function(item) {
 		resultElement += "<div class ='result_container col_4'" + 
 		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
@@ -136,6 +146,7 @@ function submitHandler() {
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
 	});
 }
+//doesn't work because there is not stored additional data to call
 function moreGameplayHandler() {
 	$("#more_gameplay_button").click(function() {
 		event.preventDefault();
@@ -143,6 +154,8 @@ function moreGameplayHandler() {
 		alert("button clicked");
 	});
 }
+
+//need function to call hidden stored data from igdb call?
 $(document).ready(function() {
 	submitHandler();
 	moreGameplayHandler();
