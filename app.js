@@ -32,9 +32,9 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		url: igdb_base_url + "/" + type + "/",
 		data: {
 			fields: "*",
-			limit: 5,
+			limit: 10,
 			offset: 0,
-			//order: "release_dates.date:desc",
+			order: "release_dates.date:desc",
 			search: searchTerm
 		},
 		headers: {
@@ -48,7 +48,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	};
 	$.ajax(settings);
 }
-	//makes request to youtube for walkthroughs search results
+//makes request to youtube 
 	function makeRequestYOUTUBE(searchTerm, index, type, callback) {
 		searchTerm = searchTerm.replace(/:/g, "").replace(/ /g, "+");
 			var settings = {
@@ -73,15 +73,16 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			}
 		};
 	$.ajax(settings);
-	}
+}
 
-
+//render functions
+//renders igdb results
 function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	if (data) {
 		$.each(data, function(index, item) {
 			resultElement = 
-	"<div class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
+	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "'>" + "<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
 		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + "<br>" +
 		"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
 
@@ -115,7 +116,7 @@ function displaySearchResultsYOUTUBE(data, index, type) {
 	if (data.items) {
 		data.items.forEach(function(item) {
 		resultElement += "<div class ='result_container col_4'" + 
-		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
+		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
  		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
 	});
 }
@@ -130,11 +131,12 @@ function submitHandler() {
 	$(".js_search_game").submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
-
+		makeRequestIGDB(query, "games", displaySearchResultsIGDB);		
 	});
 }
+
 $(function(){submitHandler();});
+
 
 // to get youtube vid results: 
 // function moreResults(data, index, type) {
