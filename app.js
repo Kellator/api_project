@@ -82,7 +82,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 function displaySearchResultsIGDB(data, type) {
 	//stores igdb results:  
 	storedDataIGDB = data;
-	//renders content
+	//renders content for page
 	var resultElement = "";
 	if (data) {
 		$.each(data, function(index, item) {
