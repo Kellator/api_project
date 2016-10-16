@@ -71,6 +71,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			dataType: 'json',
 			success: function(data){
 				callback(data, index, type);
+				console.log(data);
 			}
 		};
 	$.ajax(settings);
@@ -85,15 +86,15 @@ function displaySearchResultsIGDB(data, type) {
 	//renders content for page
 	var resultElement = "";
 	if (data) {
-		$.each(data, function(index, item) {
-			
+		$.each(data, function(index, item) { //could this function become a named function that is called only for specific index?
 			resultElement = 
 	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
 	"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
 		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + 
 		"<br>" + 
 		"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
-
+//youtube results sections 
+//gameplay
 		"<div class= 'gameplay_section youtube_results row '>" +
 			"<h1>Gameplay Videos</h1>" +  
 			"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
@@ -101,14 +102,16 @@ function displaySearchResultsIGDB(data, type) {
 					"<button type= 'button' class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
 				"</form>" +
 			"</div>"+
+//walkthrough
 		"<div class= 'walkthrough_section youtube_results row'>" +
 			"<h1>Walkthorough Videos</h1>" +
 			"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
 				"<form class='additional_results js_additional_walkthrough '>" +
-					"<button type= 'button' onclick='alert(" + 'hello' + ")class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
+					"<button type= 'button' class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
 				"</form>" +	
 			"</div>" +				
 		"</div>"; 
+//adds youtube vid request to each igdb index return		
 	$(".igdb_" + type + "_results_list").append(resultElement);
  		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
@@ -125,7 +128,6 @@ function displaySearchResultsYOUTUBE(data, index, type) {
 	var resultElement = "";
 	if (data.items) {
 		storedDataYoutube = data;
-		console.log(storedDataYoutube);
 		data.items.forEach(function(item) {
 		resultElement += "<div class ='result_container col_4'" + 
 		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
@@ -146,44 +148,20 @@ function submitHandler() {
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
 	});
 }
-//doesn't work because there is not stored additional data to call
-function moreGameplayHandler() {
-	$("#more_gameplay_button").click(function() {
-		event.preventDefault();
-		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
-		alert("button clicked");
-	});
-}
 
 //need function to call hidden stored data from igdb call?
 $(document).ready(function() {
 	submitHandler();
-	moreGameplayHandler();
 });
 //$(function(){submitHandler();});
 
-//$( ".nav_button" ).toggleClass( ".hidden", addOrRemove );
-// to get youtube vid results: 
-// function moreResults(data, index, type) {
-// 	var additionalResults = "";
-// 	if (data.nextPageToken) {
-// 		data.nextPageToken.forEach(function(item) {
-// 			additionalResults += "<div class ='result_container col_4'" + 
-// 		"<a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'/></a><br>" +
-// 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'>" + item.snippet.title + "</a></p>" + "</div>";
-// 	});
-// }
-// else {
-// 	resultElement += "<p>I'm sorry, no additional video results available.  Try again.</p>"
-// }
-// $(".youtube_" + type + "_list[value= " + index + "] ").html(additionalResults);
-// }
-
-// function moreResultsHandler() {		
-// 	$(".additional_button").click(function(event) {
-// 		event.preventDefault();
-// 		var query = $(this).;
-// 	});
-// }
-
+//code from youtube api - page token changed
+//ternary expression used - if nextPageToken make visible, if not hidden
+nextPageToken = data.nextPageToken;
+var nextVis = nextPageToken ? "visible" : "hidden";
+$("class or id selector for next").css("visiblity", nextVis);
+prevPageToken = data.prevPageToken;
+var preVis = prevPageToken ? "visible" : "hidden";
+$("class or id selec for prev").css("visibility", preVis)''
+}
 
