@@ -41,3 +41,4 @@ function resetSearchField() {
 	$(.js_search_game).val("");
 }
 //adding comment for testing
+//additional testing comment
