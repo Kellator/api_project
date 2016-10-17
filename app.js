@@ -71,7 +71,6 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			dataType: 'json',
 			success: function(data){
 				callback(data, index, type);
-				console.log(data);
 			}
 		};
 	$.ajax(settings);
@@ -145,9 +144,24 @@ function submitHandler() {
 	});
 }
 
+function submitMoreGameplay() {
+	$(".js_more_gameplay").click(function(event) {
+		event.preventDefault();
+		alert("gameplay button has been pushed");
+	});
+}
+
+function submitMoreWalkthroughs() {
+	$(".js_more_walkthrough").click(function(event) {
+		event.preventDefault();
+		alert("walkthrough button has been pushed");
+	});	
+}
 //need function to call hidden stored data from igdb call?
 $(document).ready(function() {
 	submitHandler();
+	submitMoreGameplay();
+	submitMoreWalkthroughs();
 });
 //$(function(){submitHandler();});
 
