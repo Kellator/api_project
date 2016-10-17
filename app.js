@@ -143,7 +143,7 @@ function submitHandler() {
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
 	});
 }
-
+//button testing functions
 function submitMoreGameplay() {
 	$(".js_more_gameplay").click(function(event) {
 		event.preventDefault();
