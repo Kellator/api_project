@@ -82,7 +82,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 //renders igdb results
 function displaySearchResultsIGDB(data, type) {
 	//stores igdb results:  
-	storedDataIGDB = data;
+	//storedDataIGDB = data;
 	//renders content for page
 	var resultElement = "";
 	if (data) {
@@ -98,17 +98,13 @@ function displaySearchResultsIGDB(data, type) {
 		"<div class= 'gameplay_section youtube_results row '>" +
 			"<h1>Gameplay Videos</h1>" +  
 			"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
-				"<form class=' additional_results js_additional_gameplay '>" +
-					"<button type= 'button' class='more_gameplay js_more_gameplay' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
-				"</form>" +
+				"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
 			"</div>"+
 //walkthrough
 		"<div class= 'walkthrough_section youtube_results row'>" +
 			"<h1>Walkthorough Videos</h1>" +
 			"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
-				"<form class='additional_results js_additional_walkthrough '>" +
-					"<button type= 'button' class='more_walkthrough js_more_walkthrough' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 
-				"</form>" +	
+					"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
 			"</div>" +				
 		"</div>"; 
 //adds youtube vid request to each igdb index return		
@@ -127,7 +123,7 @@ function displaySearchResultsIGDB(data, type) {
 function displaySearchResultsYOUTUBE(data, index, type) {	
 	var resultElement = "";
 	if (data.items) {
-		storedDataYoutube = data;
+		//storedDataYoutube = data;
 		data.items.forEach(function(item) {
 		resultElement += "<div class ='result_container col_4'" + 
 		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
@@ -157,11 +153,11 @@ $(document).ready(function() {
 
 //code from youtube api - page token changed
 //ternary expression used - if nextPageToken make visible, if not hidden
-nextPageToken = data.nextPageToken;
-var nextVis = nextPageToken ? "visible" : "hidden";
-$("class or id selector for next").css("visiblity", nextVis);
-prevPageToken = data.prevPageToken;
-var preVis = prevPageToken ? "visible" : "hidden";
-$("class or id selec for prev").css("visibility", preVis)''
-}
+// nextPageToken = data.nextPageToken;
+// var nextVis = nextPageToken ? "visible" : "hidden";
+// $("class or id selector for next").css("visiblity", nextVis);
+// prevPageToken = data.prevPageToken;
+// var preVis = prevPageToken ? "visible" : "hidden";
+// $("class or id selec for prev").css("visibility", preVis)''
+// }
 

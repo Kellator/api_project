@@ -25,15 +25,12 @@ form {
 }
 h1,h2,h3 {
 	font-family: 'Orbitron', sans-serif;
-
-
 }
 
-}
-h2 {
+/*h2 {
 	font-family: 'Orbitron', sans-serif;
 	padding-left: 14px;
-}
+}*/
 footer {
 	font-family: 'Orbitron', sans-serif;
 	bottom: 10;
@@ -43,7 +40,6 @@ footer {
 }
 a:visited {
 	color: #009933;
-
 }
 .gameplay_list, .walkthrough_list {
 	border: 0;
@@ -126,7 +122,7 @@ button {
 	border: 0;
 	background-color: #e0e0d1;
 }
-.additional_results {
+.paging_button {
 	font-size: .8em;
 	padding: 3px;
 }
@@ -152,13 +148,19 @@ header h3 {
 	font-family: 'Orbitron', sans-serif;
 	font-size: 3em;
 	margin: 20px 0 60px 40px;
-
 } 
 #search_submit {
 	margin-left: 4px;
 	border: 0;
 }
-
+.paging_button {
+	margin-left: 680px;
+	font-size: 1.25em;
+}
+/*.page_button_div {
+	position: relative;
+}*/
+}
 /*for mobile screens*/
 @media only screen and (max-width: 768px) {
 body {
