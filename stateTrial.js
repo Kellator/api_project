@@ -11,6 +11,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	var settings = {
 		url: igdb_base_url + "/" + type + "/",
 		data: {
+			async: false,
 			fields: "*",
 			limit: 10,
 			offset: 0,
@@ -22,8 +23,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		},
 		dataType: 'json',
 		success: function(data) {
-			callback(data,type);
-			console.log(data);
+			callback(data,type);		
 		}
 	};
 	$.ajax(settings);
