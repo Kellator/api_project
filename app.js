@@ -31,7 +31,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	var settings = {
 		url: igdb_base_url + "/" + type + "/",
 		data: {
-			async: false,
+			//async: false,
 			fields: "*",
 			limit: 10,
 			offset: 0,
@@ -56,7 +56,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			url: youtube_base_url,
 			
 			data: {
-				async: false,
+				//async: false,
 				key: youtube_key,
 				q: searchTerm + "+" + type,
 				r:"json",
@@ -106,10 +106,12 @@ function displaySearchResultsIGDB(data, type) {
 					"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
 			"</div>" +				
 		"</div>"; 
-//adds youtube vid request to each igdb index return		
+//adds youtube vid request to each igdb index return
+	//if (index < 5) {		
 	$(".igdb_" + type + "_results_list").append(resultElement);
  		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
+ 	//	}
 		});
 	}
 
