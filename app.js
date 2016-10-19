@@ -1,3 +1,4 @@
+"use strict";
 var igdb_base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com"
 var youtube_base_url = "https://www.googleapis.com/youtube/v3/search"
 var twitch_base_url = "https://api.twitch.tv/kraken."
@@ -7,24 +8,23 @@ var youtube_key = "AIzaSyC8vg9sZggTKGAiYvX4wGs9H46pR2_spPM"
 var twitch_key = "ezq2fmpfkjk3zzl17nmo2j8i5ehcdz6"
 
 var igdbWebAddress = "www.igdb.com"
-
-var igdb_titles_endpoint = "/games/"
-var igdb_genres_endpoint = "/genres/"
-var igdb_platforms_endpoint = "/platforms/"
-
-var youtube_filter_trailer = "trailer"
-var youtube_filter_gameplay = "gameplay"
-var youtube_filter_walkthrough = "walkthrough"
-var youtube_filter_commentary = "commentary"
-
-var youtube_channel = "/channel/"
-var youtube_video = "/watch?"
-
-var twitch_search_channels = "/search/channels?"
-var twitch_search_streams = "/search/streams?"
-var twitch_search_games = "/search/games?"
-
 var cloudinary_url = "https://res.cloudinary.com/igdb/image/upload/"
+
+// var igdb_titles_endpoint = "/games/"
+// var igdb_genres_endpoint = "/genres/"
+// var igdb_platforms_endpoint = "/platforms/"
+
+// var youtube_filter_trailer = "trailer"
+// var youtube_filter_gameplay = "gameplay"
+// var youtube_filter_walkthrough = "walkthrough"
+// var youtube_filter_commentary = "commentary"
+
+// var youtube_channel = "/channel/"
+// var youtube_video = "/watch?"
+
+// var twitch_search_channels = "/search/channels?"
+// var twitch_search_streams = "/search/streams?"
+// var twitch_search_games = "/search/games?"
 
 //makes request to IGDB
 function makeRequestIGDB(searchTerm, type, callback) {
@@ -35,7 +35,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			fields: "*",
 			limit: 10,
 			offset: 0,
-			order: "release_dates.date:desc",
+			//order: "release_dates.date:desc",
 			search: searchTerm
 		},
 		headers: {
@@ -43,7 +43,8 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		},
 		dataType: 'json',
 		success: function(data) {
-			callback(data,type);		
+			callback(data,type);
+			//console.log(data);		
 		}
 	};
 	$.ajax(settings);
@@ -84,6 +85,9 @@ function displaySearchResultsIGDB(data, type) {
 	//storedDataIGDB = data;
 	//renders content for page
 	var resultElement = "";
+	//for (let value of data) {
+	//	console.log(value);
+	//}
 	if (data) {
 		$.each(data, function(index, item) { //could this function become a named function that is called only for specific index?
 			resultElement = 
@@ -131,7 +135,7 @@ function displaySearchResultsYOUTUBE(data, index, type) {
  		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'>" + item.snippet.title + "</a></p>" + "</div>";
 	});
 }
-else {
+	else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
 }
 $(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
@@ -139,7 +143,7 @@ $(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
 
 //button handler for search button
 function submitHandler() {
-	$(".js_search_game").submit(function(event) {
+	$("body").on("submit", ".js_search_game", function() {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
 		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
@@ -147,14 +151,14 @@ function submitHandler() {
 }
 //button testing functions
 function submitMoreGameplay() {
-	$(".js_more_gameplay").click(function(event) {
+	$("body").on("click", ".js_more_gameplay", function() {
 		event.preventDefault();
 		alert("gameplay button has been pushed");
 	});
 }
 
 function submitMoreWalkthroughs() {
-	$(".js_more_walkthrough").click(function(event) {
+	$("body").on("click", ".js_more_walkthrough", function() {
 		event.preventDefault();
 		alert("walkthrough button has been pushed");
 	});	
