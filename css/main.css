@@ -128,7 +128,6 @@ button {
 	font-family: 'Orbitron', sans-serif;
 }
 
-
 /*for non-mobile screens*/
 @media only screen and (min-width: 769px) {
 body {

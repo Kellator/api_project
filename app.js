@@ -63,7 +63,7 @@ function makeRequestIGDB(searchTerm, type, callback) {
 				r:"json",
 				part: "snippet",
 				type: "video",
-				maxResults: 3,
+				maxResults: 6,
 				nextPageToken: "",
 				prevPageToken: "",
 				relevanceLanguage: "en",
@@ -127,17 +127,25 @@ function displaySearchResultsIGDB(data, type) {
 //renders Youtube results
 function displaySearchResultsYOUTUBE(data, index, type) {	
 	var resultElement = "";
+	var counter = 0;
 	if (data.items) {
 		//storedDataYoutube = data;
+		resultElement += "<div class= 'youtube_return shown_results'>" 
 		data.items.forEach(function(item) {
-		resultElement += "<div class ='result_container col_4'" + 
-		"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
- 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'>" + item.snippet.title + "</a></p>" + "</div>";
-	});
-}
+			resultElement += "<div class ='result_container col_4'" + 
+			"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
+	 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'>" + item.snippet.title + "</a></p>" + "</div>";
+	 		counter++;
+	 		if (counter == 3) {
+	 		resultElement += "</div><div class='youtube_return hidden_results hidden'>" }
+	 		//however many to show </div>  then open another div
+		});
+		resultElement += "</div>";
+	}
 	else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
 }
+
 $(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
 }
 
@@ -154,6 +162,12 @@ function submitMoreGameplay() {
 	$("body").on("click", ".js_more_gameplay", function() {
 		event.preventDefault();
 		alert("gameplay button has been pushed");
+		if (".hidden") {
+			$(".youtube_return").removeClass(".hidden");
+		}
+		else {
+			$(".youtube_return").addClass(".hidden");
+		}
 	});
 }
 
@@ -161,6 +175,7 @@ function submitMoreWalkthroughs() {
 	$("body").on("click", ".js_more_walkthrough", function() {
 		event.preventDefault();
 		alert("walkthrough button has been pushed");
+		
 	});	
 }
 //need function to call hidden stored data from igdb call?
