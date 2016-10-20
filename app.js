@@ -82,45 +82,45 @@ function makeRequestIGDB(searchTerm, type, callback) {
 //renders igdb results
 function displaySearchResultsIGDB(data, type) {
 	//stores igdb results:  
-	//storedDataIGDB = data;
 	//renders content for page
 	var resultElement = "";
-	//for (let value of data) {
-	//	console.log(value);
-	//}
+	var counter = 0
 	if (data) {
+//		resultElement += "<div class= 'igdb_list shown_results'>"
 		$.each(data, function(index, item) { //could this function become a named function that is called only for specific index?
 			resultElement = 
-	"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
-	"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
-		"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + 
-		"<br>" + 
-		"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
-//youtube results sections 
-//gameplay
-		"<div class= 'gameplay_section youtube_results row '>" +
-			"<h1>Gameplay Videos</h1>" +  
-			"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
-				"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
-			"</div>"+
-//walkthrough
-		"<div class= 'walkthrough_section youtube_results row'>" +
-			"<h1>Walkthorough Videos</h1>" +
-			"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
-					"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
-			"</div>" +				
-		"</div>"; 
-//adds youtube vid request to each igdb index return
-	//if (index < 5) {		
-	$(".igdb_" + type + "_results_list").append(resultElement);
- 		makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
- 		makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
- 	//	}
-		});
+			"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
+			"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
+				"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + 
+				"<br>" + 
+				"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
+		//youtube results sections 
+		//gameplay
+				"<div class= 'gameplay_section youtube_results row '>" +
+					"<h1>Gameplay Videos</h1>" +  
+					"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
+						"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
+					"</div>"+
+		//walkthrough
+				"<div class= 'walkthrough_section youtube_results row'>" +
+					"<h1>Walkthorough Videos</h1>" +
+					"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
+							"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
+					"</div>" +				
+				"</div>"; 
+		// counter++;
+		// if (counter == 3) {
+		// 	resultElement += "</div><div class= 'igdb_list hidden_results hidden'>"}
+		// });
+		// resultElement += "</div>";
+//adds youtube vid request to each igdb index return	
+		$(".igdb_" + type + "_results_list").append(resultElement);
+ 			makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
+ 			makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
+			});
 	}
-
 	else {
-		resultElement += "<p>Sorry.  No results.  Try again. </p>"
+		resultElement += "<p>Sorry.  No results.  Try again. </p>";
 	}
 }
 
@@ -129,7 +129,6 @@ function displaySearchResultsYOUTUBE(data, index, type) {
 	var resultElement = "";
 	var counter = 0;
 	if (data.items) {
-		//storedDataYoutube = data;
 		resultElement += "<div class= 'youtube_return shown_results'>" 
 		data.items.forEach(function(item) {
 			resultElement += "<div class ='result_container col_4'" + 
@@ -161,13 +160,8 @@ function submitHandler() {
 function submitMoreGameplay() {
 	$("body").on("click", ".js_more_gameplay", function() {
 		event.preventDefault();
-		alert("gameplay button has been pushed");
-		if (".hidden") {
-			$(".youtube_return").removeClass(".hidden");
-		}
-		else {
-			$(".youtube_return").addClass(".hidden");
-		}
+		$(".youtube_return").toggleClass(".hidden");
+		//alert("gameplay button has been pushed");
 	});
 }
 
