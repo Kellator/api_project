@@ -98,7 +98,7 @@ function displaySearchResultsIGDB(data, type) {
 		//gameplay
 				"<div class= 'gameplay_section youtube_results row '>" +
 					"<h1>Gameplay Videos</h1>" +  
-					"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
+					"<div value= '" + index + "' class= 'youtube_gameplay_list gameplay_display_" + index + " col_12'></div>" +
 						"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
 					"</div>"+
 		//walkthrough
@@ -158,9 +158,10 @@ function submitHandler() {
 }
 //button testing functions
 function submitMoreGameplay() {
-	$("body").on("click", ".js_more_gameplay", function() {
+	$(".gameplay_section").on("click", ".js_more_gameplay", function() {
 		event.preventDefault();
-		$(".youtube_return").toggleClass(".hidden");
+		$(".hidden_results").removeClass("hidden");
+		$(".shown_results").addClass("hidden");
 		//alert("gameplay button has been pushed");
 	});
 }
