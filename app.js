@@ -99,13 +99,13 @@ function displaySearchResultsIGDB(data, type) {
 				"<div class= 'gameplay_section youtube_results row '>" +
 					"<h1>Gameplay Videos</h1>" +  
 					"<div value= '" + index + "' class= 'youtube_gameplay_list gameplay_display_" + index + " col_12'></div>" +
-						"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
+						"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' >For More Gameplay</button>" +
 					"</div>"+
 		//walkthrough
 				"<div class= 'walkthrough_section youtube_results row'>" +
 					"<h1>Walkthorough Videos</h1>" +
 					"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
-							"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
+							"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button>For More Walkthroughs</button>" + 	
 					"</div>" +				
 				"</div>"; 
 		// counter++;
@@ -158,10 +158,11 @@ function submitHandler() {
 }
 //button testing functions
 function submitMoreGameplay() {
-	$(".gameplay_section").on("click", ".js_more_gameplay", function() {
+	$("body").on("click", ".js_more_gameplay", function(event) {
 		event.preventDefault();
-		$(".hidden_results").removeClass("hidden");
-		$(".shown_results").addClass("hidden");
+		$("button.more_gameplay").html("for less");
+		$(".hidden_results").toggleClass("hidden");
+		
 		//alert("gameplay button has been pushed");
 	});
 }
