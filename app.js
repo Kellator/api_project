@@ -65,11 +65,8 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	var counter = 0
 	if (data) {
- 		resultElement += "<div class= 'igdb_return'>" 
-			"<div class= 'idgb_return_list col_12'></div>" +
-			"<button type= 'button' class='paging_button more_igdb js_more_igdb col_3' name='more_igdb_button' id='more_igdb_button'>For More Search Results</button>" +
-			"</div>"
-		$.each(data, function(index, item) { 			
+		$(".igdb_" + type + "_results_list").append("<div class= 'igdb_return'></div>");
+		$.each(data, function(index, item) { 						
 			resultElement = 
 			"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
 			"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
@@ -81,23 +78,24 @@ function displaySearchResultsIGDB(data, type) {
 			"<div class= 'gameplay_section youtube_results row '>" +
 				"<h1>Gameplay Videos</h1>" +  
 				"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
-					"<button type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
-				"</div>"+
+				"<button value= '" + index + "'type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
+			"</div>"+
 	//walkthrough
 			"<div class= 'walkthrough_section youtube_results row'>" +
 				"<h1>Walkthorough Videos</h1>" +
 				"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
-						"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
-				"</div>" +				
+				"<button value= '" + index + "' type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
+			"</div>" +				
 			"</div>"; 
 			counter++;
 	 		if (counter == 5) {
-	 		resultElement += "</div><div class= 'igdb_return hidden '>" }
+				$(".igdb_" + type + "_results_list").append("<div class= 'igdb_return hidden'></div>");
+			}
 	 		//however many to show </div>  then open another div
 		
-		resultElement += "</div>";
+		
 //adds youtube vid request to each igdb index return	
-		$(".igdb_" + type + "_results_list").append(resultElement);
+		$(".igdb_return" + (counter >= 5 ? ".hidden" : "")).append(resultElement);
  			makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  			makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
  			});
@@ -135,7 +133,14 @@ function submitHandler() {
 	$("body").on("submit", ".js_search_game", function() {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
+		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
+		$("form.nav_buttons").toggleClass("hidden");				
+	});
+}
+function forMoreButtonHandler() {
+	$("body").on("click", ".js_more_results", function(event) {
+		event.preventDefault();
+		$(".igdb_return").toggleClass("hidden");
 	});
 }
 //button testing functions
@@ -146,7 +151,8 @@ function submitMoreGameplay() {
 		$(this).text(function(i, text) {
 			return text === "For More Gameplay" ? "Previous Gameplay Results" : "For More Gameplay";
 		});
-		$(".youtube_return_gameplay").toggleClass("hidden");
+		$(this).closest("div").find(".youtube_return_gameplay").toggleClass("hidden");
+		//$(".youtube_return_gameplay[value='" + (this).attr("value") + "']").toggleClass("hidden");
 		//alert("gameplay button has been pushed");
 	});
 }
@@ -157,7 +163,7 @@ function submitMoreWalkthroughs() {
 		$(this).text(function(i, text) {
 			return text === "For More Walkthroughs" ? "Previous Walkthough Results" : "For More Walkthroughs";
 		});
-		$(".youtube_return_walkthrough").toggleClass("hidden");
+		$(this).closest("div").find(".youtube_return_walkthrough").toggleClass("hidden");
 		//alert("walkthrough button has been pushed");
 		
 	});	
@@ -167,6 +173,7 @@ $(document).ready(function() {
 	submitHandler();
 	submitMoreGameplay();
 	submitMoreWalkthroughs();
+	forMoreButtonHandler();
 });
 //$(function(){submitHandler();});
 
