@@ -65,8 +65,11 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	var counter = 0
 	if (data) {
-//		resultElement += "<div class= 'igdb_list shown_results'>"
-		$.each(data, function(index, item) { 
+ 		resultElement += "<div class= 'igdb_return'>" 
+			"<div class= 'idgb_return_list col_12'></div>" +
+			"<button type= 'button' class='paging_button more_igdb js_more_igdb col_3' name='more_igdb_button' id='more_igdb_button'>For More Search Results</button>" +
+			"</div>"
+		$.each(data, function(index, item) { 			
 			resultElement = 
 			"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
 			"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
@@ -87,11 +90,17 @@ function displaySearchResultsIGDB(data, type) {
 						"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
 				"</div>" +				
 			"</div>"; 
+			counter++;
+	 		if (counter == 5) {
+	 		resultElement += "</div><div class= 'igdb_return hidden '>" }
+	 		//however many to show </div>  then open another div
+		
+		resultElement += "</div>";
 //adds youtube vid request to each igdb index return	
 		$(".igdb_" + type + "_results_list").append(resultElement);
  			makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  			makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
-			});
+ 			});
 	}
 	else {
 		resultElement += "<p>Sorry.  No results.  Try again. </p>";
