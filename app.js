@@ -10,28 +10,11 @@ var twitch_key = "ezq2fmpfkjk3zzl17nmo2j8i5ehcdz6"
 var igdbWebAddress = "www.igdb.com"
 var cloudinary_url = "https://res.cloudinary.com/igdb/image/upload/"
 
-// var igdb_titles_endpoint = "/games/"
-// var igdb_genres_endpoint = "/genres/"
-// var igdb_platforms_endpoint = "/platforms/"
-
-// var youtube_filter_trailer = "trailer"
-// var youtube_filter_gameplay = "gameplay"
-// var youtube_filter_walkthrough = "walkthrough"
-// var youtube_filter_commentary = "commentary"
-
-// var youtube_channel = "/channel/"
-// var youtube_video = "/watch?"
-
-// var twitch_search_channels = "/search/channels?"
-// var twitch_search_streams = "/search/streams?"
-// var twitch_search_games = "/search/games?"
-
 //makes request to IGDB
 function makeRequestIGDB(searchTerm, type, callback) {
 	var settings = {
 		url: igdb_base_url + "/" + type + "/",
 		data: {
-			//async: false,
 			fields: "*",
 			limit: 10,
 			offset: 0,
@@ -49,7 +32,6 @@ function makeRequestIGDB(searchTerm, type, callback) {
 	};
 	$.ajax(settings);
 }
-
 //makes request to youtube 
 	function makeRequestYOUTUBE(searchTerm, index, type, callback) {
 		searchTerm = searchTerm.replace(/:/g, "").replace(/ /g, "+");
@@ -57,7 +39,6 @@ function makeRequestIGDB(searchTerm, type, callback) {
 			url: youtube_base_url,
 			
 			data: {
-				//async: false,
 				key: youtube_key,
 				q: searchTerm + "+" + type,
 				r:"json",
@@ -76,8 +57,6 @@ function makeRequestIGDB(searchTerm, type, callback) {
 		};
 	$.ajax(settings);
 }
-
-
 //render functions
 //renders igdb results
 function displaySearchResultsIGDB(data, type) {
@@ -87,7 +66,7 @@ function displaySearchResultsIGDB(data, type) {
 	var counter = 0
 	if (data) {
 //		resultElement += "<div class= 'igdb_list shown_results'>"
-		$.each(data, function(index, item) { //could this function become a named function that is called only for specific index?
+		$.each(data, function(index, item) { 
 			resultElement = 
 			"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
 			"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
@@ -108,11 +87,6 @@ function displaySearchResultsIGDB(data, type) {
 						"<button type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
 				"</div>" +				
 			"</div>"; 
-		// counter++;
-		// if (counter == 3) {
-		// 	resultElement += "</div><div class= 'igdb_list hidden_results hidden'>"}
-		// });
-		// resultElement += "</div>";
 //adds youtube vid request to each igdb index return	
 		$(".igdb_" + type + "_results_list").append(resultElement);
  			makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
@@ -123,20 +97,19 @@ function displaySearchResultsIGDB(data, type) {
 		resultElement += "<p>Sorry.  No results.  Try again. </p>";
 	}
 }
-
 //renders Youtube results
 function displaySearchResultsYOUTUBE(data, index, type) {	
 	var resultElement = "";
 	var counter = 0;
 	if (data.items) {
-		resultElement += "<div class= 'youtube_return shown_results'>" 
+		resultElement += "<div value= '" + index + "'' class= 'youtube_return_" + type + "'>" 
 		data.items.forEach(function(item) {
 			resultElement += "<div class ='result_container col_4'" + 
 			"<p><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'><img class='col_12' src='" + item.snippet.thumbnails.high.url + "'></a></p><br>" +
 	 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'>" + item.snippet.title + "</a></p>" + "</div>";
 	 		counter++;
 	 		if (counter == 3) {
-	 		resultElement += "</div><div class='youtube_return hidden_results hidden'>" }
+	 		resultElement += "</div><div value= '" + index + "'class= 'youtube_return_" + type + " hidden '>" }
 	 		//however many to show </div>  then open another div
 		});
 		resultElement += "</div>";
@@ -160,21 +133,22 @@ function submitHandler() {
 function submitMoreGameplay() {
 	$("body").on("click", ".js_more_gameplay", function(event) {
 		event.preventDefault();
+		//var index = $("div.youtube_return_gameplay").val();
 		$(this).text(function(i, text) {
-			return text === "For More Gameplay" ? "For Less Gameplay" : "For More Gameplay";
+			return text === "For More Gameplay" ? "Previous Gameplay Results" : "For More Gameplay";
 		});
-		$(".hidden_results").toggleClass("hidden");
+		$(".youtube_return_gameplay").toggleClass("hidden");
 		//alert("gameplay button has been pushed");
 	});
 }
-
 function submitMoreWalkthroughs() {
 	$("body").on("click", ".js_more_walkthrough", function(event) {
 		event.preventDefault();
+		//var index = $("div.youtube_return_walkthrough").val();
 		$(this).text(function(i, text) {
-			return text === "For More Walkthroughs" ? "For Less Walkthroughs" : "For More Walkthroughs";
+			return text === "For More Walkthroughs" ? "Previous Walkthough Results" : "For More Walkthroughs";
 		});
-		$(".hidden_results").toggleClass("hidden");
+		$(".youtube_return_walkthrough").toggleClass("hidden");
 		//alert("walkthrough button has been pushed");
 		
 	});	
