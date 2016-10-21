@@ -113,14 +113,17 @@ a:visited {
 button:hover {
 	background-color: #009933;
 }
-#reset_search_button {
+#reset_search_button, #more_igdb_button {
 	font-size: 1.25em;
 	border: 0;
 }
-
+#more_igdb_button {
+	display: block;
+}
 button {
 	border: 0;
 	background-color: #e0e0d1;
+	font-family: 'Orbitron', sans-serif;
 }
 .paging_button {
 	font-size: .8em;

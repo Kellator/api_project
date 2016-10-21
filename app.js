@@ -65,11 +65,8 @@ function displaySearchResultsIGDB(data, type) {
 	var resultElement = "";
 	var counter = 0
 	if (data) {
- 		resultElement += "<div class= 'igdb_return'>" 
-			"<div class= 'idgb_return_list col_12'></div>" +
-			"<button type= 'button' class='paging_button more_igdb js_more_igdb col_3' name='more_igdb_button' id='more_igdb_button'>For More Search Results</button>" +
-			"</div>"
-		$.each(data, function(index, item) { 			
+		$.each(data, function(index, item) { 
+			resultElement += "<div class= 'igdb_return'>"			
 			resultElement = 
 			"<div value= '" + index + "' class= 'igdb_result_return  row'>" + "<a href= '" + item.url + "' target='_blank'>" + 
 			"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
