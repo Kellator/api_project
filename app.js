@@ -172,7 +172,7 @@ function submitMoreWalkthroughs() {
 		
 	});	
 }
-//need function to call hidden stored data from igdb call?
+
 $(document).ready(function() {
 	submitHandler();
 	submitMoreGameplay();
