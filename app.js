@@ -78,13 +78,13 @@ function displaySearchResultsIGDB(data, type) {
 			"<div class= 'gameplay_section youtube_results row '>" +
 				"<h1>Gameplay Videos</h1>" +  
 				"<div value= '" + index + "' class= 'youtube_gameplay_list col_12'></div>" +
-				"<button value= '" + index + "'type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>For More Gameplay</button>" +
+				"<button value= '" + index + "'type= 'button' class='paging_button more_gameplay js_more_gameplay col_3' name='more_gameplay_button' id='more_gameplay_button'>for more gameplay</button>" +
 			"</div>"+
 	//walkthrough
 			"<div class= 'walkthrough_section youtube_results row'>" +
 				"<h1>Walkthorough Videos</h1>" +
 				"<div value= '" + index + "' class= 'youtube_walkthrough_list col_12'></div>" +	  
-				"<button value= '" + index + "' type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>For More Walkthroughs</button>" + 	
+				"<button value= '" + index + "' type= 'button' class='paging_button more_walkthrough js_more_walkthrough col_3' name='more_walkthrough_button' id='more_walkthrough_button'>for more walkthroughs</button>" + 	
 			"</div>" +				
 			"</div>"; 
 			counter++;
@@ -140,6 +140,10 @@ function submitHandler() {
 function forMoreButtonHandler() {
 	$("body").on("click", ".js_more_results", function(event) {
 		event.preventDefault();
+		$(this).text(function(i, text) {
+		return text === "more results" ? "previous results" : "more results";
+		});
+		$("body").scrollTop(0);
 		$(".igdb_return").toggleClass("hidden");
 	});
 }
@@ -149,7 +153,7 @@ function submitMoreGameplay() {
 		event.preventDefault();
 		//var index = $("div.youtube_return_gameplay").val();
 		$(this).text(function(i, text) {
-			return text === "For More Gameplay" ? "Previous Gameplay Results" : "For More Gameplay";
+			return text === "for more gameplay" ? "previous gameplay results" : "for more gameplay";
 		});
 		$(this).closest("div").find(".youtube_return_gameplay").toggleClass("hidden");
 		//$(".youtube_return_gameplay[value='" + (this).attr("value") + "']").toggleClass("hidden");
@@ -161,7 +165,7 @@ function submitMoreWalkthroughs() {
 		event.preventDefault();
 		//var index = $("div.youtube_return_walkthrough").val();
 		$(this).text(function(i, text) {
-			return text === "For More Walkthroughs" ? "Previous Walkthough Results" : "For More Walkthroughs";
+			return text === "for more walkthroughs" ? "previous walkthough results" : "for more walkthroughs";
 		});
 		$(this).closest("div").find(".youtube_return_walkthrough").toggleClass("hidden");
 		//alert("walkthrough button has been pushed");
