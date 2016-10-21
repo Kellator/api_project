@@ -175,15 +175,3 @@ $(document).ready(function() {
 	submitMoreWalkthroughs();
 	forMoreButtonHandler();
 });
-//$(function(){submitHandler();});
-
-//code from youtube api - page token changed
-//ternary expression used - if nextPageToken make visible, if not hidden
-// nextPageToken = data.nextPageToken;
-// var nextVis = nextPageToken ? "visible" : "hidden";
-// $("class or id selector for next").css("visiblity", nextVis);
-// prevPageToken = data.prevPageToken;
-// var preVis = prevPageToken ? "visible" : "hidden";
-// $("class or id selec for prev").css("visibility", preVis)''
-// }
-
