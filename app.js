@@ -98,7 +98,6 @@ function displaySearchResultsIGDB(data, type) {
 		$(".igdb_return" + (counter >= 5 ? ".hidden" : "")).append(resultElement);
  			makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
  			makeRequestYOUTUBE(item.name, index, "walkthrough", displaySearchResultsYOUTUBE);
- //work on this			$("#more_igdb_button").closest("div").toggleClass("hidden");
  			});
 	}
 	else {
@@ -134,7 +133,14 @@ function submitHandler() {
 	$("body").on("submit", ".js_search_game", function() {
 		event.preventDefault();
 		var query = $(this).find(".js_search_input").val();
-		makeRequestIGDB(query, "games", displaySearchResultsIGDB);				
+		makeRequestIGDB(query, "games", displaySearchResultsIGDB);
+		$("form.nav_buttons").toggleClass("hidden");				
+	});
+}
+function forMoreButtonHandler() {
+	$("body").on("click", ".js_more_results", function(event) {
+		event.preventDefault();
+		$(".igdb_return").toggleClass("hidden");
 	});
 }
 //button testing functions
@@ -167,6 +173,7 @@ $(document).ready(function() {
 	submitHandler();
 	submitMoreGameplay();
 	submitMoreWalkthroughs();
+	forMoreButtonHandler();
 });
 //$(function(){submitHandler();});
 
