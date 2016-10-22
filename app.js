@@ -90,10 +90,7 @@ function displaySearchResultsIGDB(data, type) {
 			counter++;
 	 		if (counter == 5) {
 				$(".igdb_" + type + "_results_list").append("<div class= 'igdb_return hidden'></div>");
-			}
-	 		//however many to show </div>  then open another div
-		
-		
+			}	
 //adds youtube vid request to each igdb index return	
 		$(".igdb_return" + (counter >= 5 ? ".hidden" : "")).append(resultElement);
  			makeRequestYOUTUBE(item.name, index,  "gameplay", displaySearchResultsYOUTUBE);
@@ -116,18 +113,16 @@ function displaySearchResultsYOUTUBE(data, index, type) {
 	 		"<p class= ' col_12'><a href = 'https://www.youtube.com/watch?v=" + item.id.videoId + "'target='_blank'>" + item.snippet.title + "</a></p>" + "</div>";
 	 		counter++;
 	 		if (counter == 3) {
-	 		resultElement += "</div><div value= '" + index + "'class= 'youtube_return_" + type + " hidden '>" }
-	 		//however many to show </div>  then open another div
+	 		resultElement += "</div><div value= '" + index + "'class= 'youtube_return_" + type + " hidden '>" 
+	 	}
 		});
 		resultElement += "</div>";
 	}
 	else {
 	resultElement += "<p>I'm sorry, no search results.  Try again.</p>"
 }
-
 $(".youtube_" + type + "_list[value= " + index + "] ").html(resultElement);
 }
-
 //button handler for search button
 function submitHandler() {
 	$("body").on("submit", ".js_search_game", function() {
@@ -137,6 +132,7 @@ function submitHandler() {
 		$("form.nav_buttons").toggleClass("hidden");				
 	});
 }
+//function to show additional IGDB search results
 function forMoreButtonHandler() {
 	$("body").on("click", ".js_more_results", function(event) {
 		event.preventDefault();
@@ -151,25 +147,20 @@ function forMoreButtonHandler() {
 function submitMoreGameplay() {
 	$("body").on("click", ".js_more_gameplay", function(event) {
 		event.preventDefault();
-		//var index = $("div.youtube_return_gameplay").val();
 		$(this).text(function(i, text) {
 			return text === "for more gameplay" ? "previous gameplay results" : "for more gameplay";
 		});
 		$(this).closest("div").find(".youtube_return_gameplay").toggleClass("hidden");
-		//$(".youtube_return_gameplay[value='" + (this).attr("value") + "']").toggleClass("hidden");
-		//alert("gameplay button has been pushed");
+
 	});
 }
 function submitMoreWalkthroughs() {
 	$("body").on("click", ".js_more_walkthrough", function(event) {
 		event.preventDefault();
-		//var index = $("div.youtube_return_walkthrough").val();
 		$(this).text(function(i, text) {
 			return text === "for more walkthroughs" ? "previous walkthough results" : "for more walkthroughs";
 		});
 		$(this).closest("div").find(".youtube_return_walkthrough").toggleClass("hidden");
-		//alert("walkthrough button has been pushed");
-		
 	});	
 }
 
