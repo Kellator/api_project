@@ -72,7 +72,7 @@ function displaySearchResultsIGDB(data, type) {
 			"<h1 class = 'title_search'>" +  item.name + "</h2></a>" + 
 				"<p class= 'igdb_storyline col_8'><span class='bold_text'>Storyline:</span><br>" + (item.summary ? item.summary : "Sorry. No storyline results.") + 
 				"<br>" + 
-				"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://res.cloudinary.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
+				"<div class= 'cover_image'><img class ='side_image col_4' src = 'https://images.igdb.com/igdb/image/upload/t_cover_big/" +  item.cover.cloudinary_id + "'</></div></div>" + 
 	//youtube results sections 
 	//gameplay
 			"<div class= 'gameplay_section youtube_results row '>" +
